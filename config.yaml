@@ -1,0 +1,86 @@
+# ═══════════════════════════════════════════════════════════════════
+#  FOURTEXEC — SITE CONFIGURATION
+#  ───────────────────────────────────────────────────────────────────
+#  Every page of this website is driven by this file — edit anything
+#  below, refresh, and the site rebuilds. No other file needs editing.
+#
+#  Branding files sit next to index.html:
+#    logo.png   → logo in light theme
+#    dlogo.png  → logo in dark theme
+# ═══════════════════════════════════════════════════════════════════
+
+# ── site · global identity ──────────────────────────────────────────
+site:
+  name: fourtexec                  # crew name (header, footer, hero)
+  domain: fourtexec.site          # used in prompts & footer
+  tagline: we ship the things the docs forgot
+  description: >                   # hero paragraph (markdown folded string)
+    four people, one terminal and zero meetings. fourtexec is a small
+    engineering crew building loud open-source tools, bots and
+    experiments — then giving them away for free.
+  command: cat ./manifesto.txt     # hero terminal line
+  status: all systems nominal      # footer status line
+  email: crew@fourtexec.dev        # general contact (footer / join fallback)
+
+# ── socials · crew channels ─────────────────────────────────────────
+#  platform drives the icon: github · discord · telegram · x · youtube
+#  · twitch · instagram · linkedin · mail · rss · web
+socials:
+  - platform: github
+    label: github
+    url: https://github.com/fourtexec
+  - platform: telegram
+    lable: telegram
+    url: https://t.me/fourtexec
+# ── team · the four humans ──────────────────────────────────────────
+team:
+  - username: photon444
+    name: Maxim
+    role: founder / systems
+    avatar: avatars/photon444.webp   # local file in public/ or any https:// url
+    bio: hust a guy which found fourtexec
+    socials:
+      - platform: github
+        url: https://github.com/photonest444
+      - platform: x
+        url: https://x.com/photon444
+
+# ── projects · what we shipped ──────────────────────────────────────
+#  name        → card title
+#  description → short one-liner on the card
+#  link        → redirect target (repo / demo / store page)
+#  readme      → markdown file with the FULL description, rendered
+#                in-app on the project page (path relative to config.yaml,
+#                or an absolute https:// url)
+#  tags        → chips on the card
+#  status      → active · beta · archived  (drives the status dot)
+projects:
+  - name: Uxaoro
+    description: Brand new day social network
+    link: https://github.com/fourtexec/uxaoro
+    readme: projects/uxaoro.md
+    tags: [socialnetowrk, android, web]
+    status: beta
+
+# ── join · how to get in ────────────────────────────────────────────
+join:
+  title: join the crew
+  intro: >
+    we're exactly four people and we'd like to stay four-ish. but talent
+    beats math — if you're dangerously good, we'll find a fifth chair.
+  steps:
+    - build something loud. a tool, a bot, an exploit writeup — anything that proves you ship, not just star repos.
+    - make it public. open source is our love language; a repo link beats a resumé every single time.
+    - "shoot us one email. subject «i break things», body: who you are, what you've built, why fourtexec."
+    - survive the vibe check. one call, some pair-debugging, zero leetcode. we hire humans, not interview athletes.
+  email: join@fourtexec.site       # the inbox shown on the /join page
+  subject: i break things          # pre-filled mailto subject
+  note: >
+    no portfolios in pdf, no cover letters in word. links only.
+    if your reply starts with «dear hiring manager» the spam filter
+    will judge you before we can.
+
+# ── footer · small print ────────────────────────────────────────────
+footer:
+  note: nothing here
+  copyright: "2026"                # or "" to auto-use the current year
