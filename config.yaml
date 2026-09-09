@@ -58,9 +58,9 @@ projects:
   - name: Uxaoro
     description: Brand new day social network
     link: https://github.com/fourtexec/uxaoro
-    readme: projects/uxaoro.md
+    readme: projects/argus.md
     tags: [socialnetowrk, android, web]
-    status: beta
+    status: development
 
 # ── join · how to get in ────────────────────────────────────────────
 join:
