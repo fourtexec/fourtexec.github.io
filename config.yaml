@@ -47,7 +47,7 @@ team:
   - username: drlexusdr
     name: Lexus
     role: someone
-    avatar: avatars/1.png   # local file in public/ or any https:// url
+    avatar: avatars/1.jpg   # local file in public/ or any https:// url
     bio: Creator of musorum.com
     socials:
       - platform: github
