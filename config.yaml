@@ -44,6 +44,16 @@ team:
         url: https://github.com/photonest444
       - platform: x
         url: https://x.com/photon444
+  - username: drlexusdr
+    name: Lexus
+    role: someone
+    avatar: avatars/1.png   # local file in public/ or any https:// url
+    bio: Creator of musorum.com
+    socials:
+      - platform: github
+        url: https://github.com/dr-lexus-dr
+      - platform: telegram
+        url: https://t.me/dr_lexus_dr
 
 # ── projects · what we shipped ──────────────────────────────────────
 #  name        → card title
