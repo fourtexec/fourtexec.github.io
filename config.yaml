@@ -15,7 +15,7 @@ site:
   domain: fourtexec.site          # used in prompts & footer
   tagline: we ship the things the docs forgot
   description: >                   # hero paragraph (markdown folded string)
-    four people, one terminal and zero meetings. fourtexec is a small
+    one terminal and zero meetings. fourtexec is a small
     engineering crew building loud open-source tools, bots and
     experiments — then giving them away for free.
   command: cat ./manifesto.txt     # hero terminal line
@@ -32,6 +32,9 @@ socials:
   - platform: telegram
     lable: telegram
     url: https://t.me/fourtexec
+  - platform: youtube
+    lable: youtube
+    url: https://youtube.com/@FourTExec
 # ── team · the four humans ──────────────────────────────────────────
 team:
   - username: photon444
