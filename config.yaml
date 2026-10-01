@@ -49,7 +49,7 @@ team:
         url: https://x.com/photon444
   - username: drlexusdr
     name: Lexus
-    role: someone
+    role:  CO-Founder / coder
     avatar: avatars/1.jpg   # local file in public/ or any https:// url
     bio: Creator of musorum.com
     socials:
@@ -61,7 +61,7 @@ team:
         url: https://dr-lexus-dr.musorum.com
   - username: Za kotov
     name: Za kotov
-    role: someone
+    role: tester / coder
     avatar: avatars/photo_2026-10-01_12-25-42.jpg   # local file in public/ or any https:// url
     bio: Random
     socials:
