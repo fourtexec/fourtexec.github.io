@@ -59,6 +59,16 @@ team:
         url: https://t.me/dr_lexus_dr
       - platform: site
         url: https://dr-lexus-dr.musorum.com
+  - username: Za kotov
+    name: Za kotov
+    role: someone
+    avatar: avatars/photo_2026-10-01_12-25-42.jpg   # local file in public/ or any https:// url
+    bio: Random
+    socials:
+      - platform: github
+        url: https://github.com/aguaguagugugugugu
+      - platform: telegram
+        url: https://t.me/tdyfig
 
 # ── projects · what we shipped ──────────────────────────────────────
 #  name        → card title
