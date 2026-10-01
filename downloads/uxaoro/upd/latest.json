@@ -1,0 +1,9 @@
+{
+  "latest": "0.1.1",
+  "released": "2026-10-01T11:22:00Z",
+  "note": "Sales UX pricing & custom Premium duration, icon-only badges near names, badge apply/unapply toggle",
+  "base": "https://fourtexec.site/downloads/uxaoro/upd/",
+  "files": {
+    "android": "Uxaoro-0.1.0-android.apk"
+  }
+}
