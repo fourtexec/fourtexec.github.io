@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Uxaoro v0.1.0 Beta Overview</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #101118;
+      --card: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #f4f4f6;
+      --muted: #9ca3af;
+      --accent: #6366f1;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #ffffff;
+        --card: rgba(0, 0, 0, 0.03);
+        --border: rgba(0, 0, 0, 0.1);
+        --text: #111827;
+        --muted: #4b5563;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    h2 { margin: 0 0 8px; font-size: 20px; }
+    p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .card {
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .card h3 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      color: var(--accent);
+    }
+    .card p {
+      margin: 0;
+      font-size: 12.5px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Inside Uxaoro v0.1.0 Beta</h2>
+  <p>This HTML page (<code>article-beta.html</code>) is rendered directly inside the News tab on Android, Desktop, and Web.</p>
+  <div class="cards">
+    <div class="card">
+      <h3>✦ Premium &amp; Sales</h3>
+      <p>Custom duration Premium sales, UX pricing, profile glow, and chat bubble styling.</p>
+    </div>
+    <div class="card">
+      <h3>🏅 Icon Badges</h3>
+      <p>Redeem promocodes for badges, toggle applied/unapplied state anytime, and display badge icons next to your name.</p>
+    </div>
+    <div class="card">
+      <h3>🔒 E2EE &amp; TLS Guard</h3>
+      <p>Zero-knowledge message encryption and active TLS interception protection on Android.</p>
+    </div>
+  </div>
+</body>
+</html>

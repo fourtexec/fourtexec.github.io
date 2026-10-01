@@ -1,0 +1,54 @@
+{
+  "base_url": "https://fourtexec.site/uxaoro/news/",
+  "md_file": "news.md",
+  "popups": [
+    {
+      "id": "uxaoro-beta-0.1.0-popup",
+      "type": "popup",
+      "title": "Welcome to Uxaoro v0.1.0 Beta",
+      "html": "popup-welcome.html",
+      "appear_on_enter": true,
+      "closable": false,
+      "fullscreen": false,
+      "allow_fullscreen": true,
+      "once": true,
+      "platforms": ["android", "desktop", "web"],
+      "versions": ["0.1.0"]
+    }
+  ],
+  "tab": [
+    {
+      "id": "uxaoro-beta-launch-html",
+      "type": "tab",
+      "title": "Uxaoro v0.1.0 Beta — Official Launch Overview",
+      "date": "2026-10-01",
+      "badge": "Featured HTML",
+      "summary": "Interactive HTML overview of Uxaoro v0.1.0 Beta: end-to-end encrypted chats, communities, UX Wallet, Premium customization, Sales & Badges.",
+      "html": "article-beta.html",
+      "platforms": ["android", "desktop", "web"],
+      "versions": ["0.1.0", "*"]
+    },
+    {
+      "id": "uxaoro-android-more-tab",
+      "type": "tab",
+      "title": "Android App Update: New More & News Tabs",
+      "date": "2026-10-01",
+      "badge": "Android",
+      "summary": "Settings, UX Wallet, Uxaoro Premium, Sales, and Badges are now organized inside the dedicated More tab on Android.",
+      "markdown": "### New Navigation on Android\n\nWe have streamlined the Android navigation bar with two new tabs:\n\n- **News**: Read platform announcements, release notes, and interactive HTML pages configured from `https://fourtexec.site/uxaoro/news/`.\n- **More**: Access **Settings**, **UX Wallet**, **Uxaoro Premium**, **Sales**, and **Badges** in one convenient place.",
+      "platforms": ["android"],
+      "versions": ["0.1.0"]
+    },
+    {
+      "id": "uxaoro-desktop-web-tips",
+      "type": "tab",
+      "title": "Uxaoro on Desktop & Web",
+      "date": "2026-10-01",
+      "badge": "Desktop & Web",
+      "summary": "Keyboard shortcuts, E2EE key backup, and multi-device sync tips for Desktop and Web users.",
+      "markdown": "### Desktop & Web Tips\n\n- **Shortcuts**: Use `Ctrl+1..5` (or `⌘+1..5` on macOS) to switch sections quickly, and `Ctrl+K` for search.\n- **E2EE Key Backup**: Export your private key in **Settings** to read encrypted messages across all your devices.",
+      "platforms": ["desktop", "web"],
+      "versions": ["0.1.0", "*"]
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Welcome to Uxaoro Beta</title>
+  <style>
+    :root {
+      color-scheme: dark light;
+      --bg: #0b0b10;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #f5f5f7;
+      --muted: #a0a0ab;
+      --accent: #6366f1;
+      --accent2: #8b5cf6;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f7fb;
+        --card: rgba(0, 0, 0, 0.04);
+        --border: rgba(0, 0, 0, 0.12);
+        --text: #12131a;
+        --muted: #5b5d6b;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.22), transparent 55%), var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+    }
+    h1 {
+      margin: 14px 0 8px;
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 800;
+    }
+    p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .grid {
+      display: grid;
+      gap: 10px;
+      margin: 14px 0 20px;
+    }
+    .item {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+    .item strong {
+      display: block;
+      font-size: 13.5px;
+      margin-bottom: 3px;
+      color: var(--text);
+    }
+    .item span {
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.12s ease, opacity 0.12s ease;
+    }
+    button:active { transform: scale(0.98); }
+    button.primary {
+      flex: 1;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span class="pill">Uxaoro v0.1.0 · Beta News</span>
+    <h1>Welcome to Uxaoro Beta</h1>
+    <p>
+      This popup is rendered from <code>https://fourtexec.site/uxaoro/news/popup-welcome.html</code>.
+      Because <code>closable: false</code> is set in <code>config.json</code>, it only closes when you tap
+      <strong>Continue to Uxaoro</strong> below.
+    </p>
+    <div class="grid">
+      <div class="item">
+        <strong>End-to-End Encrypted Wire &amp; Calls</strong>
+        <span>Messages and 1:1 calls stay encrypted between your devices.</span>
+      </div>
+      <div class="item">
+        <strong>News Tab &amp; Dynamic HTML Pages</strong>
+        <span>Open the News tab anytime to read announcements configured from config.json and news.md.</span>
+      </div>
+      <div class="item">
+        <strong>UX Wallet, Premium, Sales &amp; Badges</strong>
+        <span>Customize your look, apply icon badges, and check active sales in the More tab on Android or sidebar on Web/Desktop.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" id="btn-fs" onclick="toggleFs()">⛶ Full screen</button>
+    <button type="button" class="primary" id="btn-close" onclick="closePopup()">Continue to Uxaoro</button>
+  </div>
+
+  <script>
+    var isFs = false;
+    function toggleFs() {
+      isFs = !isFs;
+      try {
+        if (window.UxaoroNews && typeof window.UxaoroNews.fullscreen === "function") {
+          window.UxaoroNews.fullscreen(isFs);
+        }
+      } catch (_) {}
+      try {
+        window.parent.postMessage({ type: "uxaoro-news-fullscreen", value: isFs }, "*");
+      } catch (_) {}
+      var btn = document.getElementById("btn-fs");
+      if (btn) btn.textContent = isFs ? "❐ Exit full screen" : "⛶ Full screen";
+    }
+
+    function closePopup() {
+      try {
+        if (window.UxaoroNews && typeof window.UxaoroNews.close === "function") {
+          window.UxaoroNews.close();
+          return;
+        }
+      } catch (_) {}
+      try {
+        window.parent.postMessage({ type: "uxaoro-news-close" }, "*");
+      } catch (_) {}
+      try {
+        location.href = "uxaoro://news/close";
+      } catch (_) {}
+    }
+  </script>
+</body>
+</html>
