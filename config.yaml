@@ -73,6 +73,7 @@ projects:
   - name: Uxaoro
     description: Uxaoro is ready, beta testing
     link: https://github.com/fourtexec/uxaoro
+    site: https://uxaoro.fourtexec.site/
     readme: projects/argus.md
     tags: [socialnetowrk, android, pc, web]
     status: beta test
