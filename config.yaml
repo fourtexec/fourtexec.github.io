@@ -57,6 +57,8 @@ team:
         url: https://github.com/dr-lexus-dr
       - platform: telegram
         url: https://t.me/dr_lexus_dr
+      - platform: site
+        url: https://dr-lexus-dr.musorum.com
 
 # ── projects · what we shipped ──────────────────────────────────────
 #  name        → card title
@@ -69,11 +71,11 @@ team:
 #  status      → active · beta · archived  (drives the status dot)
 projects:
   - name: Uxaoro
-    description: Brand new day social network
+    description: Uxaoro is ready, beta testing
     link: https://github.com/fourtexec/uxaoro
     readme: projects/argus.md
-    tags: [socialnetowrk, android, web]
-    status: development
+    tags: [socialnetowrk, android, pc, web]
+    status: beta test
 
 # ── join · how to get in ────────────────────────────────────────────
 join:
