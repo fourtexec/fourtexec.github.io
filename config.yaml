@@ -72,7 +72,7 @@ team:
   - username: Danini
     name: Danini
     role: Danini
-    avatar: avatars/Danini.jpg   # local file in public/ or any https:// url
+    avatar: avatars/danini.jpg   # local file in public/ or any https:// url
     bio: I am Danini
     socials:
       - platform: github
