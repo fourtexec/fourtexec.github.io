@@ -69,6 +69,16 @@ team:
         url: https://github.com/aguaguagugugugugu
       - platform: telegram
         url: https://t.me/tdyfig
+  - username: Danini
+    name: Danini
+    role: Danini
+    avatar: avatars/Danini.jpg   # local file in public/ or any https:// url
+    bio: I am Danini
+    socials:
+      - platform: github
+        url: https://github.com/DaniilBorovskiy1809
+      - platform: telegram
+        url: https://t.me/DaniilBorovskiy
 
 # ── projects · what we shipped ──────────────────────────────────────
 #  name        → card title
