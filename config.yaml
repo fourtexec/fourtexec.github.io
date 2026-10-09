@@ -20,7 +20,7 @@ site:
     experiments — then giving them away for free.
   command: cat ./manifesto.txt     # hero terminal line
   status: all systems nominal      # footer status line
-  email: crew@fourtexec.dev        # general contact (footer / join fallback)
+  email: join@fourtexec.site       # general contact (footer / join fallback)
 
 # ── socials · crew channels ─────────────────────────────────────────
 #  platform drives the icon: github · discord · telegram · x · youtube
@@ -47,18 +47,6 @@ team:
         url: https://github.com/photonest444
       - platform: x
         url: https://x.com/photon444
-  - username: drlexusdr
-    name: Lexus
-    role:  CO-Founder / coder
-    avatar: avatars/1.jpg   # local file in public/ or any https:// url
-    bio: Creator of musorum.com
-    socials:
-      - platform: github
-        url: https://github.com/dr-lexus-dr
-      - platform: telegram
-        url: https://t.me/dr_lexus_dr
-      - platform: site
-        url: https://dr-lexus-dr.musorum.com
   - username: Za kotov
     name: Za kotov
     role: tester / coder
