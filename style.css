@@ -11,6 +11,11 @@
   color-scheme: dark;
   --bg: #171310;
   --bg2: #100d0a;
+  --bg-grid: rgba(240, 231, 213, 0.04);
+  --bg-glow: rgba(232, 118, 45, 0.08);
+  --bg-glow2: rgba(237, 161, 94, 0.045);
+  --chrome: rgba(23, 19, 16, 0.86);
+  --chrome2: rgba(16, 13, 10, 0.9);
   --panel: #1f1a15;
   --panel2: #28211a;
   --line: #372d21;
@@ -30,6 +35,11 @@
   color-scheme: light;
   --bg: #f7f2e7;
   --bg2: #efe7d3;
+  --bg-grid: rgba(34, 27, 18, 0.05);
+  --bg-glow: rgba(184, 72, 13, 0.07);
+  --bg-glow2: rgba(184, 72, 13, 0.035);
+  --chrome: rgba(247, 242, 231, 0.86);
+  --chrome2: rgba(239, 231, 211, 0.9);
   --panel: #fffcf3;
   --panel2: #f3ecdb;
   --line: #ddd0b4;
@@ -46,17 +56,66 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* the base colour lives on <html>, not <body>: the fixed background
+   layers below use negative z-index, which paints ABOVE the html
+   background but BELOW body content. putting the colour on body would
+   let it paint over them. body stays transparent on purpose. */
+html { scroll-behavior: smooth; background: var(--bg); }
 
 body {
   margin: 0;
-  background: var(--bg);
+  background: transparent;
   color: var(--tx);
   font-family: var(--serif);
   font-size: 17px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
 }
+
+/* background layers — three of them, all fixed behind the page:
+   ::before  graph-paper grid + warm glows in the corners (pure css)
+   canvas    drifting glyphs & embers, painted by background.js
+   ::after   a soft glow that follows the cursor (--mx/--my from js)
+   the mask fades the grid toward the bottom so long pages calm down. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(900px 520px at 85% -10%, var(--bg-glow), transparent 60%),
+    radial-gradient(760px 520px at -10% 35%, var(--bg-glow2), transparent 60%),
+    radial-gradient(900px 600px at 50% 115%, var(--bg-glow2), transparent 60%),
+    linear-gradient(var(--bg-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px);
+  background-size: auto, auto, auto, 44px 44px, 44px 44px;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, rgba(0, 0, 0, 0.5));
+  mask-image: linear-gradient(to bottom, #000 55%, rgba(0, 0, 0, 0.5));
+}
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    560px circle at var(--mx, 50%) var(--my, -20%),
+    var(--bg-glow),
+    transparent 65%
+  );
+  opacity: var(--spot, 0);
+  transition: opacity 0.6s ease;
+}
+@media (pointer: coarse) { body::after { display: none; } }
 
 ::selection { background: var(--acc); color: var(--acc-ink); }
 a { color: inherit; }
@@ -78,7 +137,9 @@ button { font: inherit; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--bg);
+  background: var(--chrome);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line2);
 }
 .header-in {
@@ -598,7 +659,7 @@ section { padding-top: 72px; }
 .error-screen .term-card { max-width: 560px; width: 100%; }
 
 /* footer */
-#site-footer { border-top: 1px solid var(--line2); background: var(--bg2); margin-top: 110px; }
+#site-footer { border-top: 1px solid var(--line2); background: var(--chrome2); margin-top: 110px; }
 .footer-grid { display: grid; gap: 38px; padding: 48px 0 0; }
 @media (min-width: 760px) { .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; } }
 .footer-brand { display: flex; align-items: center; gap: 11px; margin-bottom: 15px; }
@@ -625,5 +686,7 @@ section { padding-top: 72px; }
 @media (prefers-reduced-motion: reduce) {
   .rv { transition: none; opacity: 1; transform: none; }
   .spin, .status-dot, .avatar-stack .avatar-wrap { animation: none; }
+  /* canvas paints one still frame (see background.js); no cursor glow */
+  body::after { display: none; }
   html { scroll-behavior: auto; }
 }
