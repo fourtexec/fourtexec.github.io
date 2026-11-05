@@ -131,6 +131,34 @@ nav.main-nav a.active { color: var(--acc); border-bottom-color: var(--acc); }
 
 .header-actions { display: flex; align-items: center; gap: 8px; }
 
+/* account button (filled in by the api, absent when it's offline) */
+.account-btn {
+  display: inline-flex; align-items: center; gap: 8px; height: 38px;
+  font-family: var(--mono); font-size: 13px; color: var(--mut);
+  text-decoration: none; padding: 0 10px 0 5px;
+  border: 1px solid var(--line2); border-radius: 3px; background: var(--panel);
+}
+.account-btn.signin { padding: 0 12px; }
+.account-btn:hover { color: var(--acc); border-color: var(--acc); }
+.account-ava {
+  position: relative; width: 26px; height: 26px; border-radius: 50%; overflow: hidden; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--panel2); color: var(--fnt); font-weight: bold; font-size: 12px;
+}
+.account-ava img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 480px) {
+  .account-name { display: none; }
+  .account-btn { padding: 0 5px; }
+}
+
+/* announcement banners from the admin panel */
+.site-banner { border-bottom: 1px solid var(--line2); background: var(--acc-soft); font-family: var(--mono); font-size: 13px; }
+.site-banner.critical { background: rgba(229, 83, 75, 0.14); }
+.banner-in { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 9px; padding-bottom: 9px; }
+.site-banner a { color: var(--acc); }
+.banner-x { background: none; border: 0; color: var(--mut); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 4px; }
+.banner-x:hover { color: var(--acc); }
+
 .icon-btn {
   width: 38px; height: 38px;
   display: inline-flex; align-items: center; justify-content: center;

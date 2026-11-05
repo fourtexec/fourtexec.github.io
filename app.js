@@ -285,13 +285,26 @@ function normalizeConfig(c) {
   var footer = { note: "", copyright: "" };
   Object.keys(footerIn).forEach(function (k) { footer[k] = footerIn[k]; });
 
+  // accounts: the api + accounts site. on localhost they point at local dev servers
+  var accIn = c.accounts || {};
+  var accounts = {
+    enabled: accIn.enabled !== false,
+    api: String(accIn.api || "https://api.fourtexec.site").replace(/\/+$/, ""),
+    url: String(accIn.url || "https://accounts.fourtexec.site").replace(/\/+$/, "")
+  };
+  if (typeof location !== "undefined" && /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+    accounts.api = "http://" + location.hostname + ":8080";
+    accounts.url = "http://" + location.hostname + ":8001";
+  }
+
   return {
     site: site,
     socials: Array.isArray(c.socials) ? c.socials : [],
     team: Array.isArray(c.team) ? c.team : [],
     projects: projects,
     join: join,
-    footer: footer
+    footer: footer,
+    accounts: accounts
   };
 }
 
@@ -639,7 +652,7 @@ function renderHeader(cfg, route, mobileOpen) {
       '<a class="brand" href="#/">' + logoHTML() +
         '<span class="brand-name">' + esc(cfg.site.name) + "</span></a>" +
       '<nav class="main-nav">' + links + "</nav>" +
-      '<div class="header-actions">' +
+      '<div class="header-actions">' + accountButtonHTML(cfg) +
         '<button class="icon-btn" id="theme-btn" title="toggle theme" aria-label="toggle theme">' +
           lineIcon(currentTheme() === "dark" ? "sun" : "moon", 16) + "</button>" +
         '<button class="icon-btn burger" id="burger-btn" aria-label="menu">' +
@@ -1021,6 +1034,81 @@ function errorScreen(msg) {
 }
 
 /* ================================================================
+   accounts: who is signed in, announcements from the api
+   ----------------------------------------------------------------
+   everything here is optional. if the api is down the site renders
+   exactly as before — no button, no banners.
+   ================================================================ */
+
+function accountButtonHTML(cfg) {
+  if (!cfg.accounts.enabled || state.account === undefined) return "";
+  var me = state.account;
+  if (me) {
+    var letter = esc((me.displayName || me.username || "?").charAt(0).toUpperCase());
+    var img = me.avatarUrl ? '<img src="' + esc(me.avatarUrl) + '" alt="" referrerpolicy="no-referrer" onerror="this.remove()">' : "";
+    return '<a class="account-btn" href="' + esc(cfg.accounts.url) + '/#/" title="your account">' +
+      '<span class="account-ava">' + letter + img + '</span><span class="account-name">' + esc(me.username) + "</span></a>";
+  }
+  var next = encodeURIComponent(window.location.href);
+  return '<a class="account-btn signin" href="' + esc(cfg.accounts.url) + "/#/login?next=" + next + '">' +
+    lineIcon("arrow-right", 13) + '<span>sign in</span></a>';
+}
+
+function dismissed() {
+  try { return JSON.parse(localStorage.getItem("fourtexec-dismissed") || "[]"); } catch (e) { return []; }
+}
+
+function renderBanners() {
+  var el = document.getElementById("site-banners");
+  if (!el) return;
+  var hidden = dismissed();
+  var html = "";
+  if (state.maintenance) {
+    html += '<div class="site-banner warning"><div class="wrap banner-in"><span>! ' + esc(state.maintenance) + "</span></div></div>";
+  }
+  (state.announcements || []).forEach(function (a) {
+    if (hidden.indexOf(a.id) !== -1) return;
+    html += '<div class="site-banner ' + esc(a.level) + '"><div class="wrap banner-in">' +
+      "<span><b>" + esc(a.title) + "</b>" + (a.body ? " — " + esc(a.body) : "") +
+      (a.linkUrl ? ' <a href="' + esc(a.linkUrl) + '" target="_blank" rel="noreferrer">' + esc(a.linkLabel || "more") + " →</a>" : "") +
+      '</span><button class="banner-x" data-dismiss="' + esc(a.id) + '" aria-label="dismiss">×</button></div></div>';
+  });
+  el.innerHTML = html;
+  el.querySelectorAll("[data-dismiss]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var list = dismissed();
+      list.push(b.getAttribute("data-dismiss"));
+      try { localStorage.setItem("fourtexec-dismissed", JSON.stringify(list.slice(-50))); } catch (e) {}
+      renderBanners();
+    });
+  });
+}
+
+function loadAccount(cfg) {
+  if (!cfg.accounts.enabled || typeof fetch === "undefined") return;
+  var base = cfg.accounts.api;
+  var get = function (path) {
+    return fetch(base + path, { credentials: "include" }).then(function (r) {
+      if (r.status === 401) return null;
+      if (!r.ok) throw new Error("api " + r.status);
+      return r.json();
+    });
+  };
+  get("/v1/me").then(function (res) {
+    state.account = res ? res.user : null;
+    renderHeader(state.config, state.route, state.mobileOpen);
+  }).catch(function () { /* api offline: keep the header as is */ });
+  get("/v1/public/announcements").then(function (res) {
+    state.announcements = (res && res.items) || [];
+    renderBanners();
+  }).catch(function () {});
+  get("/v1/public/config").then(function (res) {
+    state.maintenance = (res && res.maintenanceMessage) || "";
+    renderBanners();
+  }).catch(function () {});
+}
+
+/* ================================================================
    app state, routing, theme
    ================================================================ */
 
@@ -1028,7 +1116,10 @@ var state = {
   config: null,
   route: "/",
   filter: "all",
-  mobileOpen: false
+  mobileOpen: false,
+  account: undefined,      // undefined = unknown, null = signed out
+  announcements: [],
+  maintenance: ""
 };
 
 function parseRoute() {
@@ -1099,6 +1190,7 @@ function boot() {
       state.config = cfg;
       state.route = parseRoute();
       render();
+      loadAccount(cfg);
     })
     .catch(function (err) {
       errorScreen(err.message || String(err));
