@@ -104,6 +104,15 @@ join:
     if your reply starts with «dear hiring manager» the spam filter
     will judge you before we can.
 
+# ── accounts · sign-in & announcements ──────────────────────────────
+#  the "sign in" button and announcement banners come from the api.
+#  if it's down, the site simply renders without them.
+#  on localhost these point at local dev servers automatically.
+accounts:
+  enabled: true
+  api: https://api.fourtexec.site        # fourtexec/api
+  url: https://accounts.fourtexec.site   # fourtexec/accounts
+
 # ── footer · small print ────────────────────────────────────────────
 footer:
   note: nothing here
