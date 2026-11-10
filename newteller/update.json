@@ -1,0 +1,39 @@
+{
+  "schema": 1,
+  "project": "newteller",
+  "source": "https://github.com/fourtexec/newteller",
+  "targets": {
+    "arch-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-arch-x86_64.zip",
+      "sha256": "9489dd3ce8f09330c83dd92e4cce640e13ea7cc4b75b5260541c81953d414715",
+      "size": 9358421
+    },
+    "debian13-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-debian13-x86_64.zip",
+      "sha256": "cde6eacb5e672dafe5da0b3cf842cd7885e7ffba0504f431690a1c981a7f4593",
+      "size": 9384700
+    },
+    "fedora45-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-fedora45-x86_64.zip",
+      "sha256": "0cffbee7f16c9485b54f3ffa66089f733b1ef7748474a29e20d4facaf2c42f41",
+      "size": 9356661
+    },
+    "ubuntu26.04-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-ubuntu26.04-x86_64.zip",
+      "sha256": "9db70fa594807b909005f8e85bf182ef8b884eaf0de7a68953f9498503156aee",
+      "size": 9472085
+    }
+  }
+}
