@@ -85,6 +85,13 @@ projects:
     readme: projects/argus.md
     tags: [socialnetowrk, android, pc, web]
     status: beta test
+  - name: NewTeller
+    description: a wayland desktop for linux with its own compositor, panel and settings
+    link: https://github.com/fourtexec/newteller
+    site: https://fourtexec.site/newteller/
+    readme: projects/newteller.md
+    tags: [linux, wayland, desktop, qt]
+    status: beta
 
 # ── join · how to get in ────────────────────────────────────────────
 join:
