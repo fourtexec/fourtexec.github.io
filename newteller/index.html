@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="NewTeller — a Wayland desktop for Linux. Download the newest build for Debian, Ubuntu, Arch Linux or Fedora." />
+    <meta name="theme-color" content="#ff6a00" />
+    <link rel="icon" type="image/png" href="../logo.png" />
+    <title>NewTeller · downloads · fourtexec</title>
+    <script>
+      // the same theme as the rest of the site, before first paint
+      (function () {
+        try {
+          var t = localStorage.getItem("fourtexec-theme");
+          document.documentElement.dataset.theme = t === "light" ? "light" : "dark";
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      /* this page only: everything else comes from ../style.css */
+      .nt-head { padding: 56px 0 28px; }
+      .nt-head h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.05; margin: 10px 0 12px; letter-spacing: -0.02em; }
+      .nt-head p { color: var(--mut); max-width: 620px; margin: 0; }
+      .nt-back { font-family: var(--mono); font-size: 12px; color: var(--mut); text-decoration: none; }
+      .nt-back:hover { color: var(--acc); }
+      .nt-grid { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 8px 0 40px; }
+      @media (min-width: 700px) { .nt-grid { grid-template-columns: 1fr 1fr; } }
+      .nt-build { padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+      .nt-build.yours { border-color: var(--acc); box-shadow: 5px 5px 0 var(--shadow); }
+      .nt-build h2 { font-size: 22px; margin: 0; }
+      .nt-meta { font-family: var(--mono); font-size: 12px; color: var(--mut); display: flex; flex-wrap: wrap; gap: 4px 14px; }
+      .nt-sum { font-family: var(--mono); font-size: 11px; color: var(--fnt); overflow-wrap: anywhere; }
+      .nt-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+      .nt-h { font-family: var(--mono); font-size: 13px; color: var(--acc); margin: 36px 0 12px; letter-spacing: 0.04em; }
+      .nt-steps { margin: 0; padding: 18px 20px; font-family: var(--mono); font-size: 13px; line-height: 1.8; overflow-x: auto; white-space: pre; }
+      .nt-changes { list-style: none; margin: 0 0 56px; padding: 0; }
+      .nt-changes li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+      .nt-changes .when { font-family: var(--mono); font-size: 12px; color: var(--fnt); white-space: nowrap; padding-top: 3px; font-variant-numeric: tabular-nums; }
+      .nt-changes .what { min-width: 0; overflow-wrap: anywhere; }
+      .nt-state { font-family: var(--mono); font-size: 13px; color: var(--mut); padding: 24px 0 40px; }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="nt-head">
+        <a class="nt-back" href="../">&larr; fourtexec.site</a>
+        <h1>NewTeller</h1>
+        <p>
+          a complete wayland desktop for linux: its own compositor, panel, start menu and settings.
+          pick the build for your system below. after that it updates itself from
+          <span class="mono">settings &rarr; updates</span>.
+        </p>
+      </header>
+
+      <div id="builds" class="nt-state" aria-live="polite">loading the list of builds&hellip;</div>
+
+      <h2 class="nt-h">// install</h2>
+      <pre class="card2 nt-steps">unzip newteller-commit-*.zip
+cd newteller-commit-*/
+sudo bash install.sh
+# log out and choose NewTeller at the login screen</pre>
+
+      <h2 class="nt-h" id="changes-head" hidden>// what changed</h2>
+      <ul class="nt-changes" id="changes"></ul>
+    </main>
+
+    <script>
+      // The same file the NewTeller updater reads. It lists, per system, the
+      // newest build: commit, date, link to the archive and its SHA-256.
+      (function () {
+        var NAMES = { debian: "Debian", ubuntu: "Ubuntu", arch: "Arch Linux", fedora: "Fedora" };
+
+        function el(tag, cls, text) {
+          var node = document.createElement(tag);
+          if (cls) node.className = cls;
+          if (text != null) node.textContent = text;
+          return node;
+        }
+        // "debian13-x86_64" -> "Debian 13"
+        function systemName(target) {
+          var m = /^([a-z]+)([0-9.]*)-/.exec(target);
+          if (!m) return target;
+          return (NAMES[m[1]] || m[1]) + (m[2] ? " " + m[2] : "");
+        }
+        function day(seconds) {
+          return seconds ? new Date(seconds * 1000).toISOString().slice(0, 10) : "";
+        }
+        // Only links to the project's own releases are shown as downloads.
+        function safeLink(url) {
+          return /^https:\/\/github\.com\/fourtexec\/newteller\/releases\/download\//.test(url || "") ? url : "";
+        }
+        // A guess from the browser, good enough to put one card first.
+        function likelySystem() {
+          var ua = navigator.userAgent.toLowerCase();
+          var found = ["ubuntu", "fedora", "debian", "arch"].filter(function (name) {
+            return ua.indexOf(name) >= 0;
+          });
+          return found[0] || "";
+        }
+
+        function buildCard(target, entry, yours) {
+          var card = el("section", "card nt-build" + (yours ? " yours" : ""));
+          var top = el("div", "nt-row");
+          top.appendChild(el("h2", "", systemName(target)));
+          if (yours) top.appendChild(el("span", "chip", "looks like your system"));
+          card.appendChild(top);
+
+          var meta = el("div", "nt-meta");
+          meta.appendChild(el("span", "", "build " + String(entry.commit || "").slice(0, 10)));
+          if (entry.date) meta.appendChild(el("span", "", day(entry.date)));
+          if (entry.size) meta.appendChild(el("span", "", (entry.size / 1048576).toFixed(1) + " MB"));
+          meta.appendChild(el("span", "", "x86_64"));
+          card.appendChild(meta);
+
+          if (entry.notes) card.appendChild(el("p", "proj-desc", entry.notes));
+
+          var row = el("div", "nt-row");
+          var link = safeLink(entry.url);
+          if (link) {
+            var a = el("a", "btn btn-solid", "download .zip");
+            a.href = link;
+            a.rel = "noopener";
+            row.appendChild(a);
+          }
+          if (entry.sha256) {
+            var copy = el("button", "btn btn-ghost", "copy sha-256");
+            copy.type = "button";
+            copy.addEventListener("click", function () {
+              var done = function (ok) {
+                copy.textContent = ok ? "copied" : "select it below";
+                setTimeout(function () { copy.textContent = "copy sha-256"; }, 1600);
+              };
+              if (navigator.clipboard && navigator.clipboard.writeText)
+                navigator.clipboard.writeText(entry.sha256).then(function () { done(true); }, function () { done(false); });
+              else done(false);
+            });
+            row.appendChild(copy);
+          }
+          card.appendChild(row);
+          if (entry.sha256) card.appendChild(el("div", "nt-sum", "sha256 " + entry.sha256));
+          return card;
+        }
+
+        function show(data) {
+          var box = document.getElementById("builds");
+          var targets = data && data.targets ? data.targets : {};
+          var names = Object.keys(targets).sort();
+          if (!names.length) {
+            box.textContent = "no builds are listed right now. the releases are on github: ";
+            var a = el("a", "acc", "fourtexec/newteller/releases");
+            a.href = "https://github.com/fourtexec/newteller/releases";
+            box.appendChild(a);
+            return;
+          }
+          var guess = likelySystem();
+          names.sort(function (a, b) {
+            return (b.indexOf(guess) === 0 && guess ? 1 : 0) - (a.indexOf(guess) === 0 && guess ? 1 : 0);
+          });
+          box.textContent = "";
+          box.className = "nt-grid";
+          names.forEach(function (target) {
+            box.appendChild(buildCard(target, targets[target], !!guess && target.indexOf(guess) === 0));
+          });
+
+          var changes = Array.isArray(data.changes) ? data.changes.slice(0, 12) : [];
+          if (!changes.length) return;
+          document.getElementById("changes-head").hidden = false;
+          var list = document.getElementById("changes");
+          changes.forEach(function (change) {
+            var item = el("li");
+            item.appendChild(el("span", "when", day(change.date)));
+            item.appendChild(el("span", "what", change.title || ""));
+            list.appendChild(item);
+          });
+        }
+
+        fetch("update.json", { cache: "no-cache" })
+          .then(function (response) {
+            if (!response.ok) throw new Error("http " + response.status);
+            return response.json();
+          })
+          .then(show)
+          .catch(function () {
+            var box = document.getElementById("builds");
+            box.textContent = "the list of builds could not be loaded. the releases are on github: ";
+            var a = el("a", "acc", "fourtexec/newteller/releases");
+            a.href = "https://github.com/fourtexec/newteller/releases";
+            box.appendChild(a);
+          });
+      })();
+    </script>
+    <noscript>
+      <p class="wrap mono">the list of builds needs javascript. the releases are at https://github.com/fourtexec/newteller/releases</p>
+    </noscript>
+  </body>
+</html>

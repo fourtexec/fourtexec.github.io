@@ -30,3 +30,8 @@ its archive.
 
 To hold an update back, disable the workflow and put the previous entry back;
 installed systems only move to what this file offers.
+
+`index.html` (<https://fourtexec.site/newteller/>) is the download page: it
+reads the same `update.json` and shows one card per system, plus the list of
+recent changes (`"changes"` in the file, which the updater shows as "What is
+new").
