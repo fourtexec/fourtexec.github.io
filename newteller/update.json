@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "project": "newteller",
+  "source": "https://github.com/fourtexec/newteller",
+  "targets": {
+    "arch-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-arch-x86_64.zip",
+      "sha256": "9489dd3ce8f09330c83dd92e4cce640e13ea7cc4b75b5260541c81953d414715",
+      "size": 9358421
+    },
+    "debian13-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-debian13-x86_64.zip",
+      "sha256": "cde6eacb5e672dafe5da0b3cf842cd7885e7ffba0504f431690a1c981a7f4593",
+      "size": 9384700
+    },
+    "fedora45-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-fedora45-x86_64.zip",
+      "sha256": "0cffbee7f16c9485b54f3ffa66089f733b1ef7748474a29e20d4facaf2c42f41",
+      "size": 9356661
+    },
+    "ubuntu26.04-x86_64": {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-ubuntu26.04-x86_64.zip",
+      "sha256": "9db70fa594807b909005f8e85bf182ef8b884eaf0de7a68953f9498503156aee",
+      "size": 9472085
+    }
+  },
+  "changes": [
+    {
+      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
+      "date": 1793943937,
+      "title": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes"
+    },
+    {
+      "commit": "9d751a08fec18f77746fc621d9647249597e5ee5",
+      "date": 1793814825,
+      "title": "Settings that were lost on restart, real weather, desktop file handling, safer power menu, translations"
+    },
+    {
+      "commit": "397167c88c29a4a93a88f6e0e0c675a0ff1b6eb3",
+      "date": 1793782392,
+      "title": "Notifications, tray, media, input and Russian interface fixes"
+    },
+    {
+      "commit": "0af7700efb34eb184ecea3e0582d7c3d7ac10de8",
+      "date": 1793727649,
+      "title": "QML smoke: do not read \"icon:\" string literals as icon names"
+    },
+    {
+      "commit": "565562c4c6fd53d67d98ed8eab301929363756b9",
+      "date": 1793721390,
+      "title": "Claude/newteller improvements 3byxk9"
+    },
+    {
+      "commit": "75980cfa7eb5fe8f740ac50c215c9ff1cf152d8b",
+      "date": 1793715543,
+      "title": "Docs: wlroots 0.20 and the Arch/Fedora workflows"
+    },
+    {
+      "commit": "649d5bb50ad44dc80e1379fe7f0b7c198cab4c21",
+      "date": 1793710488,
+      "title": "Support Arch Linux and Fedora, with their own workflows"
+    },
+    {
+      "commit": "73ca694faf40d60c141478d88bec21f4770c4136",
+      "date": 1793708771,
+      "title": "Add a development skill for agents working on NewTeller"
+    },
+    {
+      "commit": "c44adaf0f0825149a821e364bfaba7ff0a173015",
+      "date": 1793706752,
+      "title": "Title bars, overview, Bluetooth, displays page, customization and desktop effects"
+    },
+    {
+      "commit": "df1fdd564266ac6c5e6507aa55a862bbe217139c",
+      "date": 1793700571,
+      "title": "compositor: real Alt+Tab cycling and a Super tap for the start menu"
+    },
+    {
+      "commit": "3f05c0a510f522835d6029ac97a5d2d544091748",
+      "date": 1793700383,
+      "title": "Fix the link error introduced by #3: build src/rustbridge.cpp"
+    },
+    {
+      "commit": "41517e4fd1fd7b9a20d2ffbdfc7d1389116f9ae8",
+      "date": 1793693568,
+      "title": "abc"
+    },
+    {
+      "commit": "1826fe0738d622bdcba4d665047cf2d15b4241e7",
+      "date": 1793693523,
+      "title": "test2"
+    },
+    {
+      "commit": "8f2bf7808dc2c5186720e7934ab71c83ac26a3fa",
+      "date": 1793691385,
+      "title": "test"
+    },
+    {
+      "commit": "bef6f3317d0cbcc859d1760f8a23fcf78b1d1a6d",
+      "date": 1793085486,
+      "title": "Link every dropdown to the button that toggles it"
+    },
+    {
+      "commit": "8fa32b0d8c345affe9a2c70b4fa6bd98ff077f4c",
+      "date": 1793027171,
+      "title": "ci: fix the session smoke test (QSize unpack + start menu click)"
+    },
+    {
+      "commit": "675fe5e999dfcd570d0598035e648593435c8e69",
+      "date": 1793013852,
+      "title": "dock: rebuild the four dock materials after the macOS reference"
+    },
+    {
+      "commit": "621a1ffa7d483b40f08a6b8b55f7def5f7476953",
+      "date": 1792997902,
+      "title": "some"
+    },
+    {
+      "commit": "9303609ecdf6768a5d527dd525e435d1fa84434c",
+      "date": 1792784329,
+      "title": "Settings: fix the crash when picking a wallpaper via the file manager"
+    },
+    {
+      "commit": "58e105a0e2a464f5fdc61c2218dc002773c7bf4e",
+      "date": 1792779200,
+      "title": "Surface materials (opaque / half-transparent / frosted / liquid glass) and fixes for settings that did nothing"
+    },
+    {
+      "commit": "193ab3a1bcd81bb32c6335a0404508377dd1416a",
+      "date": 1792767424,
+      "title": "changes"
+    },
+    {
+      "commit": "db96700bea0df977bf0bc8c1cf055175835c114a",
+      "date": 1792668869,
+      "title": "Fix QML smoke test parse and runtime errors across shell and plugins"
+    },
+    {
+      "commit": "e72eb9837e648b265a001e7ca8db04d03a68dfb0",
+      "date": 1792652893,
+      "title": "Fix QML loading errors and missing bundled icons"
+    },
+    {
+      "commit": "f6097b8d3b69b4449fcbf7fba5939b455ec5eb08",
+      "date": 1792652500,
+      "title": "Add comprehensive customization settings and improvements"
+    },
+    {
+      "commit": "6d91050e4c8683a825bd6833b41c348642e842c4",
+      "date": 1792474334,
+      "title": "feat: system tray, quick settings, notification centre, tooltips"
+    },
+    {
+      "commit": "b0c30e6a6400f1b941d8ca115684ca656c9a10d5",
+      "date": 1792434521,
+      "title": "feat: one motion system for the whole shell"
+    },
+    {
+      "commit": "56fdd4960eb412ef7de03d8f0542dbb13cb30a9c",
+      "date": 1792390689,
+      "title": "fix: dock shows every window, system file chooser, tinted icons, own design"
+    },
+    {
+      "commit": "cebe64d2ecee44238f27c68a77d801ab64213678",
+      "date": 1792385574,
+      "title": "dock finds all running apps, IconKit icons bundled, X11 popup polish"
+    },
+    {
+      "commit": "45c4998b9eb3f0841fc3c4213fe4ab719df134fd",
+      "date": 1792383318,
+      "title": "fix: clock popup failed to parse on Qt 6.8 (reserved word 'long')"
+    },
+    {
+      "commit": "78a0631fcf3881b8102963d4f258f1617884888c",
+      "date": 1792351379,
+      "title": "fix: notification daemon compiles with QtDBus"
+    }
+  ]
+}
