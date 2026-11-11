@@ -9,6 +9,8 @@ takes the newest release that carries its archive and writes down the commit,
 its date, the download link and the archive's SHA-256. The NewTeller updater
 downloads the archive from that link and checks it against the hash.
 
+Next to it, changes.xml is an Atom feed of the same changes for feed readers.
+
 Usage: newteller-update.py OUTPUT.json   (GITHUB_TOKEN is optional)
 """
 import calendar
@@ -18,6 +20,7 @@ import re
 import sys
 import time
 import urllib.request
+from xml.sax.saxutils import escape
 
 REPO = "fourtexec/newteller"
 API = "https://api.github.com/repos/" + REPO
@@ -59,6 +62,45 @@ def describe(info):
     if len(lines) > 1 and lines[0].startswith("Merge pull request"):
         lines = lines[1:]
     return calendar.timegm(when), lines[0][:200] if lines else ""
+
+
+def atom_feed(changes):
+    """The list of changes as an Atom feed (newest first, as in the data)."""
+    def stamp(seconds):
+        return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(seconds))
+    lines = [
+        '<?xml version="1.0" encoding="utf-8"?>',
+        '<feed xmlns="http://www.w3.org/2005/Atom">',
+        "  <title>NewTeller: what changed</title>",
+        '  <link href="https://fourtexec.site/newteller/"/>',
+        '  <link rel="self" href="https://fourtexec.site/newteller/changes.xml"/>',
+        "  <id>https://fourtexec.site/newteller/</id>",
+        "  <author><name>fourtexec</name></author>",
+        "  <updated>%s</updated>" % stamp(changes[0]["date"] if changes else 0),
+    ]
+    for change in changes:
+        link = "https://github.com/%s/commit/%s" % (REPO, change["commit"])
+        lines += [
+            "  <entry>",
+            "    <title>%s</title>" % escape(change["title"]),
+            '    <link href="%s"/>' % link,
+            "    <id>%s</id>" % link,
+            "    <updated>%s</updated>" % stamp(change["date"]),
+            "  </entry>",
+        ]
+    return "\n".join(lines + ["</feed>"]) + "\n"
+
+
+def write_if_changed(path, text):
+    try:
+        with open(path, encoding="utf-8") as handle:
+            if handle.read() == text:
+                return False
+    except FileNotFoundError:
+        pass
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write(text)
+    return True
 
 
 def main():
@@ -122,15 +164,11 @@ def main():
         "changes": changes,
     }
     text = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
-    try:
-        with open(output, encoding="utf-8") as handle:
-            if handle.read() == text:
-                print("%s is up to date" % output)
-                return
-    except FileNotFoundError:
-        pass
-    with open(output, "w", encoding="utf-8") as handle:
-        handle.write(text)
+    feed = os.path.join(os.path.dirname(output) or ".", "changes.xml")
+    feed_changed = write_if_changed(feed, atom_feed(changes))
+    if not write_if_changed(output, text) and not feed_changed:
+        print("%s is up to date" % output)
+        return
     for target, entry in manifest["targets"].items():
         print("%s -> %s" % (target, entry["commit"][:10]))
 

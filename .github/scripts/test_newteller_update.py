@@ -11,6 +11,7 @@ import json
 import os
 import sys
 import tempfile
+import xml.dom.minidom
 
 sys.dont_write_bytecode = True  # no __pycache__ next to the site's files
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -105,6 +106,12 @@ def main():
     assert [change["commit"] for change in data["changes"]] == [NEW, OLD]
     assert data["changes"][1]["title"] == "The first build"
     assert data["schema"] == 1
+    # The Atom feed carries the same changes and is well-formed XML.
+    feed = xml.dom.minidom.parseString(generator.atom_feed(
+        data["changes"] + [{"commit": "e" * 40, "date": 1, "title": "a < b & c"}]))
+    titles = [entry.getElementsByTagName("title")[0].firstChild.data
+              for entry in feed.getElementsByTagName("entry")]
+    assert titles == ["The title of the pull request", "The first build", "a < b & c"], titles
 
     # The same answers again produce the same bytes (no commit every run).
     again, text_again = generate(releases, existing=text)

@@ -35,3 +35,6 @@ installed systems only move to what this file offers.
 reads the same `update.json` and shows one card per system, plus the list of
 recent changes (`"changes"` in the file, which the updater shows as "What is
 new").
+
+`changes.xml` is an Atom feed of the same changes, written by the same
+script.

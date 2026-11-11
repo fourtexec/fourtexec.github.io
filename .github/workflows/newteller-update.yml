@@ -36,12 +36,12 @@ jobs:
       - name: Publish
         run: |
           python3 -c 'import json; json.load(open("newteller/update.json"))'
-          if git diff --quiet -- newteller/update.json && git ls-files --error-unmatch newteller/update.json > /dev/null 2>&1; then
+          git add newteller/update.json newteller/changes.xml
+          if git diff --cached --quiet; then
             echo 'Nothing changed.'
             exit 0
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add newteller/update.json
           git commit -m 'NewTeller update data'
           git push
