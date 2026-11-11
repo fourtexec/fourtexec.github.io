@@ -11,6 +11,7 @@ on:
     branches: [ghpages]
     paths:
       - .github/scripts/newteller-update.py
+      - .github/scripts/test_newteller_update.py
       - .github/workflows/newteller-update.yml
 
 permissions:
@@ -26,6 +27,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v5
+      - name: Check the generator
+        run: python3 .github/scripts/test_newteller_update.py
       - name: Regenerate the update data
         env:
           GITHUB_TOKEN: ${{ github.token }}
