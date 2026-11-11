@@ -50,6 +50,17 @@ def archive_hash(asset, assets):
     return None
 
 
+def describe(info):
+    """(time, title) of a commit object of the API."""
+    when = time.strptime(info["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ")
+    lines = [line.strip() for line in info["message"].splitlines() if line.strip()]
+    # A merge commit's first line names the branch; the pull request's title
+    # follows it and says what changed.
+    if len(lines) > 1 and lines[0].startswith("Merge pull request"):
+        lines = lines[1:]
+    return calendar.timegm(when), lines[0][:200] if lines else ""
+
+
 def main():
     if len(sys.argv) != 2:
         sys.exit(__doc__)
@@ -72,14 +83,7 @@ def main():
                 print("skipping %s: no SHA-256" % name, file=sys.stderr)
                 continue
             if commit not in commits:
-                info = json.loads(fetch(API + "/commits/" + commit))["commit"]
-                when = time.strptime(info["committer"]["date"], "%Y-%m-%dT%H:%M:%SZ")
-                lines = [line.strip() for line in info["message"].splitlines() if line.strip()]
-                # A merge commit's first line names the branch; the pull
-                # request's title follows it and says what changed.
-                if len(lines) > 1 and lines[0].startswith("Merge pull request"):
-                    lines = lines[1:]
-                commits[commit] = (calendar.timegm(when), lines[0][:200] if lines else "")
+                commits[commit] = describe(json.loads(fetch(API + "/commits/" + commit))["commit"])
             date, notes = commits[commit]
             targets[found.group(1)] = {
                 "commit": commit,
@@ -93,11 +97,29 @@ def main():
         # Never publish an empty list: the installed systems would see
         # "no build for this system".
         sys.exit("no release archives found in %s; %s left as it is" % (REPO, output))
+    # What the builds bring: the newest commits of the project, newest
+    # first. The updater shows the ones after the installed build. Only the
+    # main line is listed (a merged pull request is one entry, not its
+    # commits), and nothing newer than the newest build on offer.
+    newest = max(targets.values(), key=lambda entry: entry["date"])["commit"]
+    changes, parent, history = [], newest, {}
+    for page in range(1, 6):
+        listed = json.loads(fetch(API + "/commits?per_page=100&page=%d&sha=%s" % (page, newest)))
+        history.update((item["sha"], item) for item in listed)
+        while parent in history and len(changes) < 30:
+            item = history[parent]
+            date, title = describe(item["commit"])
+            if title:
+                changes.append({"commit": parent, "date": date, "title": title})
+            parent = item["parents"][0]["sha"] if item["parents"] else None
+        if not listed or parent is None or len(changes) >= 30:
+            break
     manifest = {
         "schema": 1,
         "project": "newteller",
         "source": "https://github.com/" + REPO,
         "targets": dict(sorted(targets.items())),
+        "changes": changes,
     }
     text = json.dumps(manifest, indent=2, ensure_ascii=False) + "\n"
     try:
