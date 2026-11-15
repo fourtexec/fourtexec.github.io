@@ -92,6 +92,12 @@ projects:
     readme: projects/newteller.md
     tags: [linux, wayland, desktop, qt]
     status: beta
+  - name: nash
+    description: a modern sh-compatible shell in rust with the best of bash and zsh
+    link: https://github.com/fourtexec/nash
+    readme: projects/nash.md         # generated from the releases of fourtexec/nash
+    tags: [shell, rust, linux, macos, android]
+    status: active
 
 # ── join · how to get in ────────────────────────────────────────────
 join:

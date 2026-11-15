@@ -32,14 +32,38 @@ def release(tag, names, **extra):
     return data
 
 
+def commit(sha, message):
+    return {"sha": sha * 40, "commit": {"committer": {"date": "2026-11-14T10:00:00Z"}, "message": message}}
+
+
+COMMITS = [
+    commit("a", "Merge pull request #7 from fourtexec/branch\n\nThe title of the pull request"),
+    commit("b", "Fix [click](javascript:alert(1)) and ![x](y) `code` | <b>\n\nDetails."),
+    commit("c", "\n"),
+]
+
+
 def answers(releases):
     def fetch(url, accept=None):
         if "/releases?" in url:
             return json.dumps(releases if "page=1" in url else []).encode()
+        if "/commits?" in url:
+            return json.dumps(COMMITS).encode()
         if url.endswith("/SHA256SUMS"):
             return ("%s  nash-linux-aarch64\n%s *nash-macos-aarch64\nnot a line\n" % ("D" * 64, "e" * 64)).encode()
         raise AssertionError("unexpected request: " + url)
     return fetch
+
+
+def generate_page(releases):
+    generator.fetch = answers(releases)
+    with tempfile.TemporaryDirectory() as folder:
+        path = os.path.join(folder, "nash.md")
+        sys.argv = ["nash-manifest.py", os.path.join(folder, "manifest.json"), path]
+        generator.main()
+        generator.main()  # a second run changes nothing
+        with open(path, encoding="utf-8") as handle:
+            return handle.read()
 
 
 def generate(releases, existing=None):
@@ -114,6 +138,23 @@ def main():
     # Nothing to offer: the published file is left as it is.
     nothing, kept = generate([release("v0.0.9", [])], existing=text)
     assert nothing is None and kept == text
+
+    # The project page: the newest of each channel, downloads, changes.
+    text = generate_page(releases)
+    newest_dev = "dev%d" % (99 + generator.KEEP_DEV)
+    assert "| stable | [0.1.1](https://github.com/fourtexec/nash/releases/tag/v0.1.1) | 2026-11-15 | `nash update` |" in text
+    assert "| dev | [%s](" % newest_dev in text
+    assert "## Download 0.1.1\n" in text and "## Development build %s\n" % newest_dev in text
+    assert ("| Android (Termux) aarch64 | [nash-android-aarch64](https://github.com/fourtexec/nash/releases/"
+            "download/v0.1.1/nash-android-aarch64) | 0.0 MB |") in text
+    assert "- 2026-11-14 — The title of the pull request ([aaaaaaa](https://github.com/fourtexec/nash/commit/" in text
+    # A commit title cannot bring links, images or markup to the page.
+    assert "- 2026-11-14 — Fix click(javascript:alert(1)) and !x(y) code  b ([bbbbbbb](" in text, text
+    assert "ccccccc" not in text
+    assert "| [0.1.0.7](https://github.com/fourtexec/nash/releases/tag/v0.1.0.7) | stable | 2026-11-15 | Linux |" in text
+    # Development builds only: the page has no stable part and still works.
+    text = generate_page([sums])
+    assert "| stable |" not in text and "## Download" not in text and "nash update dev12 " in text
     print("nash-manifest.py: all checks passed")
 
 
