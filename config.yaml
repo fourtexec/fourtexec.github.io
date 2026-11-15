@@ -1,46 +1,30 @@
-# ═══════════════════════════════════════════════════════════════════
-#  FOURTEXEC — SITE CONFIGURATION
-#  ───────────────────────────────────────────────────────────────────
-#  Every page of this website is driven by this file — edit anything
-#  below, refresh, and the site rebuilds. No other file needs editing.
-#
-#  Branding files sit next to index.html:
-#    logo.png   → logo in light theme
-#    dlogo.png  → logo in dark theme
-# ═══════════════════════════════════════════════════════════════════
+# Settings and text for fourtexec.site.
+# logo.png is the logo for the light theme, dlogo.png for the dark one.
 
-# ── site · global identity ──────────────────────────────────────────
 site:
-  name: fourtexec                  # crew name (header, footer, hero)
-  domain: fourtexec.site          # used in prompts & footer
-  tagline: we ship the things the docs forgot
-  description: >                   # hero paragraph (markdown folded string)
-    one terminal and zero meetings. fourtexec is a small
-    engineering crew building loud open-source tools, bots and
-    experiments — then giving them away for free.
-  command: cat ./manifesto.txt     # hero terminal line
-  status: all systems nominal      # footer status line
-  email: join@fourtexec.site       # general contact (footer / join fallback)
+  name: fourtexec
+  domain: fourtexec.site
+  tagline: We make open-source software
+  description: >
+    fourtexec is a small team. We write software and publish the
+    source on GitHub. Our projects are listed below.
+  email: join@fourtexec.site
 
-# ── socials · crew channels ─────────────────────────────────────────
-#  platform drives the icon: github · discord · telegram · x · youtube
-#  · twitch · instagram · linkedin · mail · rss · web
+# platform is one of: github, telegram, youtube, x, discord, twitch,
+# instagram, linkedin, mail, rss, web. label is optional.
 socials:
   - platform: github
-    label: github
     url: https://github.com/fourtexec
   - platform: telegram
-    lable: telegram
     url: https://t.me/fourtexec
   - platform: youtube
-    lable: youtube
     url: https://youtube.com/@FourTExec
-# ── team · the four humans ──────────────────────────────────────────
+
 team:
   - username: photon444
     name: Maxim
     role: founder / systems
-    avatar: avatars/photon444.webp   # local file in public/ or any https:// url
+    avatar: avatars/photon444.webp   # a file in this repo or an https:// url
     bio: hust a guy which found fourtexec
     socials:
       - platform: github
@@ -50,7 +34,7 @@ team:
   - username: Za kotov
     name: Za kotov
     role: tester / coder
-    avatar: avatars/photo_2026-10-01_12-25-42.jpg   # local file in public/ or any https:// url
+    avatar: avatars/photo_2026-10-01_12-25-42.jpg
     bio: Random
     socials:
       - platform: github
@@ -60,7 +44,7 @@ team:
   - username: Danini
     name: Danini
     role: Danini
-    avatar: avatars/danini.jpg   # local file in public/ or any https:// url
+    avatar: avatars/danini.jpg
     bio: I am Danini
     socials:
       - platform: github
@@ -68,71 +52,63 @@ team:
       - platform: telegram
         url: https://t.me/DaniilBorovskiy
 
-# ── projects · what we shipped ──────────────────────────────────────
-#  name        → card title
-#  description → short one-liner on the card
-#  link        → redirect target (repo / demo / store page)
-#  readme      → markdown file with the FULL description, rendered
-#                in-app on the project page (path relative to config.yaml,
-#                or an absolute https:// url)
-#  tags        → chips on the card
-#  status      → active · beta · archived  (drives the status dot)
+# name        title of the project
+# description one or two sentences
+# link        the repository
+# site        the project's own website, if it has one
+# readme      markdown file with the full description, shown on the project page
+# tags        a few words shown under the description
+# status      active, beta, archived or any other word
 projects:
   - name: Mesh Ranker
-    description: a native android companion for МЭШ with schedules, homework, grades and student rankings
+    description: An Android app for МЭШ with the schedule, homework, grades and student rankings.
     link: https://github.com/fourtexec/mesh-ranker-app
     readme: projects/mesh-ranker.md
-    tags: [android, kotlin, jetpack-compose, education]
+    tags: [android, kotlin, jetpack compose]
     status: active
   - name: Uxaoro
     description: Uxaoro is ready, beta testing
     link: https://github.com/fourtexec/uxaoro
     site: https://uxaoro.fourtexec.site/
     readme: projects/argus.md
-    tags: [socialnetowrk, android, pc, web]
+    tags: [social network, android, pc, web]
     status: beta test
   - name: NewTeller
-    description: a wayland desktop for linux with its own compositor, panel and settings
+    description: A Wayland desktop for Linux with its own compositor, panel and settings.
     link: https://github.com/fourtexec/newteller
     site: https://fourtexec.site/newteller/
     readme: projects/newteller.md
     tags: [linux, wayland, desktop, qt]
     status: beta
   - name: nash
-    description: a modern sh-compatible shell in rust with the best of bash and zsh
+    description: An sh-compatible shell written in Rust, with ideas taken from bash and zsh.
     link: https://github.com/fourtexec/nash
     readme: projects/nash.md         # generated from the releases of fourtexec/nash
     tags: [shell, rust, linux, macos, android]
     status: active
 
-# ── join · how to get in ────────────────────────────────────────────
 join:
-  title: join the crew
+  title: Join us
   intro: >
-    we're exactly four people and we'd like to stay four-ish. but talent
-    beats math — if you're dangerously good, we'll find a fifth chair.
+    We are a small team and sometimes take new people. If you would
+    like to work with us, this is how it goes.
   steps:
-    - build something loud. a tool, a bot, an exploit writeup — anything that proves you ship, not just star repos.
-    - make it public. open source is our love language; a repo link beats a resumé every single time.
-    - "shoot us one email. subject «i break things», body: who you are, what you've built, why fourtexec."
-    - survive the vibe check. one call, some pair-debugging, zero leetcode. we hire humans, not interview athletes.
-  email: join@fourtexec.site       # the inbox shown on the /join page
-  subject: i break things          # pre-filled mailto subject
-  note: >
-    no portfolios in pdf, no cover letters in word. links only.
-    if your reply starts with «dear hiring manager» the spam filter
-    will judge you before we can.
+    - Make something of your own. A program, a bot, an app, anything you can show.
+    - Put it somewhere public. A GitHub repository is best.
+    - Email us the link and a few words about yourself.
+    - If it looks like a fit we will write back and set up a call.
+  email: join@fourtexec.site
+  subject: Joining fourtexec       # subject of the email the button opens
+  note: Please send links, not PDF or Word attachments.
 
-# ── accounts · sign-in & announcements ──────────────────────────────
-#  the "sign in" button and announcement banners come from the api.
-#  if it's down, the site simply renders without them.
-#  on localhost these point at local dev servers automatically.
+# The sign in button and the announcement banners come from the api.
+# If it is down the site is shown without them.
+# On localhost these point at local dev servers.
 accounts:
   enabled: true
   api: https://api.fourtexec.site        # fourtexec/api
   url: https://accounts.fourtexec.site   # fourtexec/accounts
 
-# ── footer · small print ────────────────────────────────────────────
 footer:
-  note: nothing here
-  copyright: "2026"                # or "" to auto-use the current year
+  note: ""                         # extra text after the copyright
+  copyright: "2026"                # "" uses the current year
