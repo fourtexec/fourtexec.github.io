@@ -53,6 +53,9 @@ nash update --list   # what there is for your system
 
 ## Latest changes
 
+- 2026-11-15 — Release workflow updates fourtexec.site itself ([97487a5](https://github.com/fourtexec/nash/commit/97487a5827aeab1732e5e6831920df3859c07c22))
+- 2026-11-15 — Optimize command execution: avoid globbing directory reads for lone '' command words ([c8cff3b](https://github.com/fourtexec/nash/commit/c8cff3b058c683e0e9e05cffcb99c93fab38a9c8))
+- 2026-11-15 — Release workflow updates fourtexec.site itself ([1c06bd4](https://github.com/fourtexec/nash/commit/1c06bd4650cd979349e7c6dbb9dc63cfb3a158e2))
 - 2026-11-15 — Claude/dazzling volta feps5m ([e21f0ef](https://github.com/fourtexec/nash/commit/e21f0ef13d8257f3c9807e260edbd2ccc50cd978))
 - 2026-11-15 — Merge main: the manifest updater replaces the GitHub-latest one ([0008d13](https://github.com/fourtexec/nash/commit/0008d13f282b46a945f0b7b481a1d6dd3ef9a12a))
 - 2026-11-15 — Remove stale Rust cache from Android release build ([c8f279f](https://github.com/fourtexec/nash/commit/c8f279fb799327398fdcb1b0b7294e6bf1d0615b))
@@ -60,9 +63,6 @@ nash update --list   # what there is for your system
 - 2026-11-15 — Make nash update download and install the latest GitHub release ([2468178](https://github.com/fourtexec/nash/commit/2468178929b148cff813d8448d1c3cf64654df4a))
 - 2026-11-15 — Restore offline nash update (validate local binary) to avoid release/VERSION 404s ([5102938](https://github.com/fourtexec/nash/commit/510293806e50fe9918dd7ec093b7aef5f3154423))
 - 2026-11-15 — nash update: install from the manifest on fourtexec.site ([fc7f9fb](https://github.com/fourtexec/nash/commit/fc7f9fbdcabd85e6fabf5b4596c88fd0addb3aec))
-- 2026-11-15 — Fix VERSION extraction path in release job ([a852d04](https://github.com/fourtexec/nash/commit/a852d0402b95a7adbcf53d4d3e2617015c35b7d6))
-- 2026-11-15 — Add VERSION file to releases for nash update ([7634220](https://github.com/fourtexec/nash/commit/763422018498aa755d3c291c1fe3cb45f6f80b03))
-- 2026-11-15 — Fix installer temp path for Termux (avoid non-writable /tmp) ([4b81af9](https://github.com/fourtexec/nash/commit/4b81af9bc243941933ce6884829379e08ac68e9d))
 
 ## All releases
 
