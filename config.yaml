@@ -78,6 +78,12 @@ team:
 #  tags        → chips on the card
 #  status      → active · beta · archived  (drives the status dot)
 projects:
+  - name: Mesh Ranker
+    description: a native android companion for МЭШ with schedules, homework, grades and student rankings
+    link: https://github.com/fourtexec/mesh-ranker-app
+    readme: projects/mesh-ranker.md
+    tags: [android, kotlin, jetpack-compose, education]
+    status: active
   - name: Uxaoro
     description: Uxaoro is ready, beta testing
     link: https://github.com/fourtexec/uxaoro
