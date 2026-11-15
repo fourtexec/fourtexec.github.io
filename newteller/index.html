@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="NewTeller — a Wayland desktop for Linux. Download the newest build for Debian, Ubuntu, Arch Linux or Fedora." />
-    <meta name="theme-color" content="#ff6a00" />
+    <meta name="theme-color" content="#0e0e0e" />
     <link rel="icon" type="image/png" href="../logo.png" />
-    <title>NewTeller · downloads · fourtexec</title>
+    <title>NewTeller downloads · fourtexec</title>
     <script>
       // the same theme as the rest of the site, before first paint
       (function () {
@@ -18,27 +18,26 @@
     </script>
     <link rel="stylesheet" href="../style.css" />
     <style>
-      /* this page only: everything else comes from ../style.css */
-      .nt-head { padding: 56px 0 28px; }
-      .nt-head h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.05; margin: 10px 0 12px; letter-spacing: -0.02em; }
+      /* this page only, the rest comes from ../style.css */
+      .nt-head { padding: 36px 0 24px; }
+      .nt-head h1 { margin: 10px 0; }
       .nt-head p { color: var(--mut); max-width: 620px; margin: 0; }
-      .nt-back { font-family: var(--mono); font-size: 12px; color: var(--mut); text-decoration: none; }
-      .nt-back:hover { color: var(--acc); }
-      .nt-grid { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 8px 0 40px; }
+      .nt-back { font-size: 14px; color: var(--mut); text-decoration: none; }
+      .nt-grid { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 8px 0 32px; }
       @media (min-width: 700px) { .nt-grid { grid-template-columns: 1fr 1fr; } }
-      .nt-build { padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-      .nt-build.yours { border-color: var(--acc); box-shadow: 5px 5px 0 var(--shadow); }
-      .nt-build h2 { font-size: 22px; margin: 0; }
-      .nt-meta { font-family: var(--mono); font-size: 12px; color: var(--mut); display: flex; flex-wrap: wrap; gap: 4px 14px; }
-      .nt-sum { font-family: var(--mono); font-size: 11px; color: var(--fnt); overflow-wrap: anywhere; }
+      .nt-build { padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+      .nt-build.yours { border-color: var(--acc); }
+      .nt-build h2 { margin: 0; }
+      .nt-meta { font-size: 14px; color: var(--mut); display: flex; flex-wrap: wrap; gap: 2px 14px; }
+      .nt-sum { font-family: var(--mono); font-size: 11px; color: var(--mut); overflow-wrap: anywhere; }
       .nt-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-      .nt-h { font-family: var(--mono); font-size: 13px; color: var(--acc); margin: 36px 0 12px; letter-spacing: 0.04em; }
-      .nt-steps { margin: 0; padding: 18px 20px; font-family: var(--mono); font-size: 13px; line-height: 1.8; overflow-x: auto; white-space: pre; }
-      .nt-changes { list-style: none; margin: 0 0 56px; padding: 0; }
-      .nt-changes li { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); min-width: 0; }
-      .nt-changes .when { font-family: var(--mono); font-size: 12px; color: var(--fnt); white-space: nowrap; padding-top: 3px; font-variant-numeric: tabular-nums; }
+      .nt-h { margin: 32px 0 12px; }
+      .nt-steps { margin: 0; padding: 14px 16px; font-family: var(--mono); font-size: 14px; line-height: 1.6; overflow-x: auto; white-space: pre; }
+      .nt-changes { list-style: none; margin: 0 0 48px; padding: 0; }
+      .nt-changes li { display: flex; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+      .nt-changes .when { font-size: 14px; color: var(--mut); white-space: nowrap; font-variant-numeric: tabular-nums; }
       .nt-changes .what { min-width: 0; overflow-wrap: anywhere; }
-      .nt-state { font-family: var(--mono); font-size: 13px; color: var(--mut); padding: 24px 0 40px; }
+      .nt-state { color: var(--mut); padding: 20px 0 32px; }
     </style>
   </head>
   <body>
@@ -47,21 +46,21 @@
         <a class="nt-back" href="../">&larr; fourtexec.site</a>
         <h1>NewTeller</h1>
         <p>
-          a complete wayland desktop for linux: its own compositor, panel, start menu and settings.
-          pick the build for your system below. after that it updates itself from
-          <span class="mono">settings &rarr; updates</span>.
+          A complete Wayland desktop for Linux with its own compositor, panel, start menu and settings.
+          Pick the build for your system below. After that it updates itself from
+          Settings &rarr; Updates.
         </p>
       </header>
 
-      <div id="builds" class="nt-state" aria-live="polite">loading the list of builds&hellip;</div>
+      <div id="builds" class="nt-state" aria-live="polite">Loading the list of builds&hellip;</div>
 
-      <h2 class="nt-h">// install</h2>
+      <h2 class="nt-h">Install</h2>
       <pre class="card2 nt-steps">unzip newteller-commit-*.zip
 cd newteller-commit-*/
 sudo bash install.sh
 # log out and choose NewTeller at the login screen</pre>
 
-      <h2 class="nt-h" id="changes-head" hidden>// what changed</h2>
+      <h2 class="nt-h" id="changes-head" hidden>What changed</h2>
       <ul class="nt-changes" id="changes"></ul>
     </main>
 
@@ -118,18 +117,18 @@ sudo bash install.sh
           var row = el("div", "nt-row");
           var link = safeLink(entry.url);
           if (link) {
-            var a = el("a", "btn btn-solid", "download .zip");
+            var a = el("a", "btn btn-solid", "Download .zip");
             a.href = link;
             a.rel = "noopener";
             row.appendChild(a);
           }
           if (entry.sha256) {
-            var copy = el("button", "btn btn-ghost", "copy sha-256");
+            var copy = el("button", "btn", "Copy SHA-256");
             copy.type = "button";
             copy.addEventListener("click", function () {
               var done = function (ok) {
-                copy.textContent = ok ? "copied" : "select it below";
-                setTimeout(function () { copy.textContent = "copy sha-256"; }, 1600);
+                copy.textContent = ok ? "Copied" : "Select it below";
+                setTimeout(function () { copy.textContent = "Copy SHA-256"; }, 1600);
               };
               if (navigator.clipboard && navigator.clipboard.writeText)
                 navigator.clipboard.writeText(entry.sha256).then(function () { done(true); }, function () { done(false); });
@@ -147,7 +146,7 @@ sudo bash install.sh
           var targets = data && data.targets ? data.targets : {};
           var names = Object.keys(targets).sort();
           if (!names.length) {
-            box.textContent = "no builds are listed right now. the releases are on github: ";
+            box.textContent = "No builds are listed right now. The releases are on GitHub: ";
             var a = el("a", "acc", "fourtexec/newteller/releases");
             a.href = "https://github.com/fourtexec/newteller/releases";
             box.appendChild(a);
@@ -183,7 +182,7 @@ sudo bash install.sh
           .then(show)
           .catch(function () {
             var box = document.getElementById("builds");
-            box.textContent = "the list of builds could not be loaded. the releases are on github: ";
+            box.textContent = "The list of builds could not be loaded. The releases are on GitHub: ";
             var a = el("a", "acc", "fourtexec/newteller/releases");
             a.href = "https://github.com/fourtexec/newteller/releases";
             box.appendChild(a);
@@ -191,7 +190,7 @@ sudo bash install.sh
       })();
     </script>
     <noscript>
-      <p class="wrap mono">the list of builds needs javascript. the releases are at https://github.com/fourtexec/newteller/releases</p>
+      <p class="wrap">The list of builds needs JavaScript. The releases are at https://github.com/fourtexec/newteller/releases</p>
     </noscript>
   </body>
 </html>
