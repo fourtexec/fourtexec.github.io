@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Regenerates what the site says about nash:
 
-  nash/manifest.json  the release manifest `nash update` reads from
-                      https://fourtexec.site/nash/manifest.json
+  nash/manifest.json  the releases and their binaries as data, at
+                      https://fourtexec.site/nash/manifest.json (older builds
+                      of nash update themselves from it; newer ones
+                      ask GitHub directly)
   projects/nash.md    the project page: the newest releases, their downloads
                       and the latest changes
 
@@ -12,9 +14,8 @@ release per version: `v0.1.1` is a stable release, `dev7` a development build
 nash-<os>-<cpu>. For each release this script writes down its binaries with
 the tags of the platform they are for, the download link and the SHA-256.
 
-`nash update` takes the first release of the channel it was asked for
-(stable, dev) that has a binary whose tags name its platform, so releases
-are listed newest first; `nash update VERSION` takes that version.
+Releases are listed newest first within a channel (stable, dev): a reader
+takes the first one that has a binary whose tags name its platform.
 
 Run by the release workflow of fourtexec/nash after every release, and by a
 workflow of this repository twice an hour.
@@ -161,9 +162,9 @@ def project_page(manifest, commits):
         "",
         "## Update",
         "",
-        "nash updates itself from the [release manifest](https://fourtexec.site/nash/manifest.json)",
-        "of this site: it takes the binary tagged with your system and CPU, checks its",
-        "SHA-256 and replaces itself.",
+        "nash updates itself straight from its [GitHub releases](https://github.com/%s/releases):" % REPO,
+        "it takes the binary named after your system and CPU from the release, checks",
+        "its SHA-256 and replaces itself.",
         "",
         "```sh",
         "nash update          # the newest stable release",

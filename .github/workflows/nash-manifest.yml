@@ -2,9 +2,8 @@ name: nash release manifest
 
 # Keeps what the site says about nash in step with the releases of
 # fourtexec/nash:
-#   nash/manifest.json  (https://fourtexec.site/nash/manifest.json) `nash
-#                       update` reads it, picks the binary tagged with its
-#                       platform and downloads it from the link
+#   nash/manifest.json  (https://fourtexec.site/nash/manifest.json) the
+#                       releases and their binaries as data
 #   projects/nash.md    the project page: newest releases, downloads, changes
 #
 # The release workflow of fourtexec/nash runs the same generator and pushes
