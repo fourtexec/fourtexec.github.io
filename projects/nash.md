@@ -10,7 +10,7 @@ its own. The only dependency is `libc`.
 | channel | version | released | get it |
 | --- | --- | --- | --- |
 | stable | [0.1.0.7](https://github.com/fourtexec/nash/releases/tag/v0.1.0.7) | 2026-11-15 | `nash update` |
-| dev | [dev12](https://github.com/fourtexec/nash/releases/tag/dev12) | 2026-11-15 | `nash update dev` |
+| dev | [dev14](https://github.com/fourtexec/nash/releases/tag/dev14) | 2026-11-15 | `nash update dev` |
 
 ## Install
 
@@ -41,18 +41,19 @@ nash update --list   # what there is for your system
 | macOS aarch64 | [nash-macos-aarch64](https://github.com/fourtexec/nash/releases/download/v0.1.0.7/nash-macos-aarch64) | 1.2 MB |
 | macOS x86_64 | [nash-macos-x86_64](https://github.com/fourtexec/nash/releases/download/v0.1.0.7/nash-macos-x86_64) | 1.3 MB |
 
-## Development build dev12
+## Development build dev14
 
 | platform | file | size |
 | --- | --- | --- |
-| Android (Termux) aarch64 | [nash-android-aarch64](https://github.com/fourtexec/nash/releases/download/dev12/nash-android-aarch64) | 1.3 MB |
-| Linux aarch64 | [nash-linux-aarch64](https://github.com/fourtexec/nash/releases/download/dev12/nash-linux-aarch64) | 1.4 MB |
-| Linux x86_64 | [nash-linux-x86_64](https://github.com/fourtexec/nash/releases/download/dev12/nash-linux-x86_64) | 1.6 MB |
-| macOS aarch64 | [nash-macos-aarch64](https://github.com/fourtexec/nash/releases/download/dev12/nash-macos-aarch64) | 1.3 MB |
-| macOS x86_64 | [nash-macos-x86_64](https://github.com/fourtexec/nash/releases/download/dev12/nash-macos-x86_64) | 1.4 MB |
+| Android (Termux) aarch64 | [nash-android-aarch64](https://github.com/fourtexec/nash/releases/download/dev14/nash-android-aarch64) | 1.3 MB |
+| Linux aarch64 | [nash-linux-aarch64](https://github.com/fourtexec/nash/releases/download/dev14/nash-linux-aarch64) | 1.4 MB |
+| Linux x86_64 | [nash-linux-x86_64](https://github.com/fourtexec/nash/releases/download/dev14/nash-linux-x86_64) | 1.6 MB |
+| macOS aarch64 | [nash-macos-aarch64](https://github.com/fourtexec/nash/releases/download/dev14/nash-macos-aarch64) | 1.3 MB |
+| macOS x86_64 | [nash-macos-x86_64](https://github.com/fourtexec/nash/releases/download/dev14/nash-macos-x86_64) | 1.4 MB |
 
 ## Latest changes
 
+- 2026-11-15 — Micro-optimize builtin dispatch: match-based is_builtin and fast path in exec_simple ([5b8a60c](https://github.com/fourtexec/nash/commit/5b8a60cf912c378c982600bae93ba3de4ad676fe))
 - 2026-11-15 — Release workflow updates fourtexec.site itself ([97487a5](https://github.com/fourtexec/nash/commit/97487a5827aeab1732e5e6831920df3859c07c22))
 - 2026-11-15 — Optimize command execution: avoid globbing directory reads for lone '' command words ([c8cff3b](https://github.com/fourtexec/nash/commit/c8cff3b058c683e0e9e05cffcb99c93fab38a9c8))
 - 2026-11-15 — Release workflow updates fourtexec.site itself ([1c06bd4](https://github.com/fourtexec/nash/commit/1c06bd4650cd979349e7c6dbb9dc63cfb3a158e2))
@@ -62,7 +63,6 @@ nash update --list   # what there is for your system
 - 2026-11-15 — Merge main: keep nash update PATH next to the manifest updater ([b3c3016](https://github.com/fourtexec/nash/commit/b3c3016679dfc1f6a05cd447010c52589c36a8ec))
 - 2026-11-15 — Make nash update download and install the latest GitHub release ([2468178](https://github.com/fourtexec/nash/commit/2468178929b148cff813d8448d1c3cf64654df4a))
 - 2026-11-15 — Restore offline nash update (validate local binary) to avoid release/VERSION 404s ([5102938](https://github.com/fourtexec/nash/commit/510293806e50fe9918dd7ec093b7aef5f3154423))
-- 2026-11-15 — nash update: install from the manifest on fourtexec.site ([fc7f9fb](https://github.com/fourtexec/nash/commit/fc7f9fbdcabd85e6fabf5b4596c88fd0addb3aec))
 
 ## All releases
 
@@ -71,6 +71,8 @@ nash update --list   # what there is for your system
 | [0.1.0.7](https://github.com/fourtexec/nash/releases/tag/v0.1.0.7) | stable | 2026-11-15 | Android (Termux), Linux, macOS |
 | [0.1.0.5](https://github.com/fourtexec/nash/releases/tag/v0.1.0.5) | stable | 2026-11-15 | Android (Termux), Linux, macOS |
 | [0.1.0](https://github.com/fourtexec/nash/releases/tag/v0.1.0) | stable | 2026-11-15 | Android (Termux), Linux, macOS |
+| [dev14](https://github.com/fourtexec/nash/releases/tag/dev14) | dev | 2026-11-15 | Android (Termux), Linux, macOS |
+| [dev13](https://github.com/fourtexec/nash/releases/tag/dev13) | dev | 2026-11-15 | Android (Termux), Linux, macOS |
 | [dev12](https://github.com/fourtexec/nash/releases/tag/dev12) | dev | 2026-11-15 | Android (Termux), Linux, macOS |
 | [dev11](https://github.com/fourtexec/nash/releases/tag/dev11) | dev | 2026-11-15 | Android (Termux), Linux, macOS |
 | [dev10](https://github.com/fourtexec/nash/releases/tag/dev10) | dev | 2026-11-15 | Android (Termux), Linux, macOS |
