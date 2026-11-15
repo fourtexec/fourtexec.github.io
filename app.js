@@ -435,15 +435,39 @@ function renderMarkdown(src) {
   return '<div class="md">' + out.join("") + "</div>";
 }
 
-/* Small helpers */
+/* Icons and small helpers */
 
-var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/>';
-var MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+var BRAND_ICONS = {
+  github: '<path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11.1 11.1 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>',
+  telegram: '<path d="M21.9 4.6 18.8 19.3c-.23 1.03-.85 1.28-1.72.8l-4.76-3.51-2.3 2.21c-.25.26-.47.47-.96.47l.35-4.93 8.97-8.1c.39-.35-.08-.54-.6-.2L7.6 13.7 2.83 12.2c-1.04-.32-1.06-1.04.22-1.54l18.67-7.2c.86-.32 1.62.2 1.18 1.14z"/>',
+  x: '<path d="M18.9 2.6h3.1l-6.8 7.8L23.2 21.4h-6.3l-4.9-6.4-5.6 6.4H3.3l7.3-8.3L2.8 2.6h6.4l4.4 5.9zm-1.1 16.9h1.7L8.4 4.4H6.6z"/>',
+  discord: '<path d="M18.6 5.3A16 16 0 0 0 14.6 4l-.5 1a13 13 0 0 1 3.7 1.8 12.4 12.4 0 0 0-11.6 0A13 13 0 0 1 9.9 5L9.4 4a16 16 0 0 0-4 1.3C2.9 9.1 2.2 12.8 2.5 16.4a16 16 0 0 0 4.9 2.5l1-1.6a10 10 0 0 1-1.6-.8l.4-.3a11.4 11.4 0 0 0 9.6 0l.4.3c-.5.3-1 .6-1.6.8l1 1.6a16 16 0 0 0 4.9-2.5c.4-4.2-.7-7.9-2.9-11.1zM9.7 15.5c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8zm4.6 0c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.6.8 1.6 1.8-.7 1.8-1.6 1.8z"/>',
+  youtube: '<path d="M23 7.5s-.2-1.6-.9-2.3c-.9-.9-1.9-.9-2.3-1C16.6 4 12 4 12 4s-4.6 0-7.8.2c-.4.1-1.4.1-2.3 1-.7.7-.9 2.3-.9 2.3S.8 9.4.8 11.3v1.4c0 1.9.2 3.8.2 3.8s.2 1.6.9 2.3c.9.9 2 .9 2.5 1 1.8.2 7.6.2 7.6.2s4.6 0 7.8-.3c.4-.1 1.4-.1 2.3-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.8v-1.4c0-1.9-.2-3.8-.2-3.8zM9.8 15.1V8.4l6.2 3.4z"/>',
+  twitch: '<path d="M4.3 2 2.6 6.4v15.1h5.3V24h3.1l2.5-2.5h3.9L22 16.9V2zm15.6 13.7-2.8 2.8h-4.6l-2.2 2.2v-2.2H5.2V4.2h14.7zM17 7.6h-1.9v5.3H17zm-5.1 0H10v5.3h1.9z"/>'
+};
 
-function themeIcon() {
-  return '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" ' +
-    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
-    (currentTheme() === "dark" ? SUN : MOON) + "</svg>";
+var LINE_ICONS = {
+  instagram: '<rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4"/>',
+  linkedin: '<rect x="2.5" y="2.5" width="19" height="19" rx="4"/><path d="M7.5 10.5v6"/><path d="M11.5 16.5v-6"/><path d="M11.5 13.2a2.6 2.6 0 0 1 5.2 0v3.3"/>',
+  mail: '<rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  rss: '<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>',
+  web: '<circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19"/><path d="M12 2.5c2.7 2.6 4 5.9 4 9.5s-1.3 6.9-4 9.5c-2.7-2.6-4-5.9-4-9.5s1.3-6.9 4-9.5z"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/>',
+  moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+  "arrow-right": '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
+  "arrow-left": '<path d="M19 12H5"/><path d="m11 18-6-6 6-6"/>',
+  "arrow-up-right": '<path d="M7 17 17 7"/><path d="M8 7h9v9"/>'
+};
+
+function icon(name, size) {
+  size = size || 16;
+  var key = String(name || "").toLowerCase();
+  if (key === "twitter") key = "x";
+  if (key === "email") key = "mail";
+  var filled = !!BRAND_ICONS[key];
+  return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" ' +
+    (filled ? 'fill="currentColor"' : 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"') +
+    ' aria-hidden="true">' + (BRAND_ICONS[key] || LINE_ICONS[key] || LINE_ICONS.web) + "</svg>";
 }
 
 var PLATFORM_NAMES = {
@@ -457,10 +481,12 @@ function socialName(s) {
   return s.label || PLATFORM_NAMES[key] || s.platform || "link";
 }
 
-function socialLinks(list) {
+// round icon buttons
+function socialButtons(list) {
   return (list || []).map(function (s) {
-    return '<a href="' + esc(s.url || "#") + '" target="_blank" rel="noreferrer">' + esc(socialName(s)) + "</a>";
-  }).join(" · ");
+    return '<a class="icon-btn" href="' + esc(s.url || "#") + '" target="_blank" rel="noreferrer" title="' +
+      esc(socialName(s)) + '" aria-label="' + esc(socialName(s)) + '">' + icon(s.platform, 17) + "</a>";
+  }).join("");
 }
 
 function currentTheme() {
@@ -490,6 +516,19 @@ function avatarHTML(member, cls) {
 function cap(s) {
   s = String(s || "");
   return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function pad2(n) { return String(n).padStart(2, "0"); }
+
+function statusPill(status) {
+  if (!status) return "";
+  var kind = /^active/.test(status) ? "live" : /^archiv/.test(status) ? "off" : "wip";
+  return '<span class="pill"><i class="dot ' + kind + '"></i>' + esc(status) + "</span>";
+}
+
+function tagsHTML(tags) {
+  if (!tags || !tags.length) return "";
+  return '<div class="tags">' + tags.map(function (t) { return "<span>" + esc(t) + "</span>"; }).join("") + "</div>";
 }
 
 function copyText(text, btn) {
@@ -530,7 +569,8 @@ function renderHeader(cfg, route) {
       '<a class="brand" href="#/">' + logoHTML("brand-logo") + "<span>" + esc(cfg.site.name) + "</span></a>" +
       '<nav class="main-nav">' + links + "</nav>" +
       '<div class="header-actions">' + accountButtonHTML(cfg) +
-        '<button class="theme-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme">' + themeIcon() + "</button>" +
+        '<button class="icon-btn" id="theme-btn" title="Switch theme" aria-label="Switch theme">' +
+          icon(currentTheme() === "dark" ? "sun" : "moon", 17) + "</button>" +
       "</div>" +
     "</div>";
 
@@ -539,69 +579,96 @@ function renderHeader(cfg, route) {
 
 function renderFooter(cfg) {
   var year = cfg.footer.copyright || String(new Date().getFullYear());
-  var links = socialLinks(cfg.socials);
   var email = cfg.site.email || cfg.join.email;
-  if (email) links += (links ? " · " : "") + '<a href="mailto:' + esc(email) + '">' + esc(email) + "</a>";
+  var nav = [{ to: "/", label: "Home" }].concat(NAV).map(function (n) {
+    return '<a href="#' + n.to + '">' + n.label + "</a>";
+  }).join("");
+  var socials = cfg.socials.map(function (s) {
+    return '<a href="' + esc(s.url || "#") + '" target="_blank" rel="noreferrer">' + icon(s.platform, 15) + esc(socialName(s)) + "</a>";
+  }).join("");
 
   document.getElementById("site-footer").innerHTML =
-    '<div class="wrap footer-in">' +
-      "<span>© " + esc(year) + " " + esc(cfg.site.name) +
-        (cfg.footer.note ? " · " + esc(cfg.footer.note) : "") + "</span>" +
-      "<span>" + links + "</span>" +
+    '<div class="wrap">' +
+      '<div class="footer-grid">' +
+        '<div class="footer-brand">' + logoHTML("footer-logo") +
+          (cfg.site.tagline ? "<p>" + esc(cfg.site.tagline) + "</p>" : "") + "</div>" +
+        '<div class="footer-col"><h4>Site</h4>' + nav + "</div>" +
+        '<div class="footer-col"><h4>Find us</h4>' + socials +
+          (email ? '<a href="mailto:' + esc(email) + '">' + icon("mail", 15) + esc(email) + "</a>" : "") + "</div>" +
+      "</div>" +
+      '<div class="footer-bottom">© ' + esc(year) + " " + esc(cfg.site.name) +
+        (cfg.footer.note ? " · " + esc(cfg.footer.note) : "") + "</div>" +
     "</div>";
 }
 
-function projectItem(p) {
-  var links = [];
-  if (p.readme) links.push('<a href="#/projects/' + esc(p.slug) + '">Read more</a>');
-  if (p.site) links.push('<a href="' + esc(p.site) + '" target="_blank" rel="noreferrer">Website</a>');
-  if (p.link) links.push('<a href="' + esc(p.link) + '" target="_blank" rel="noreferrer">Source</a>');
-  var title = p.readme
-    ? '<a href="#/projects/' + esc(p.slug) + '">' + esc(p.name || "") + "</a>"
+function projectCard(p, index) {
+  var links = "";
+  if (p.site) links += '<a href="' + esc(p.site) + '" target="_blank" rel="noreferrer">Website ' + icon("arrow-up-right", 14) + "</a>";
+  if (p.link) links += '<a href="' + esc(p.link) + '" target="_blank" rel="noreferrer">Source ' + icon("arrow-up-right", 14) + "</a>";
+  var name = p.readme
+    ? '<a class="stretch" href="#/projects/' + esc(p.slug) + '">' + esc(p.name || "") + "</a>"
     : esc(p.name || "");
 
-  return '<li class="project">' +
-    "<h3>" + title + (p.status ? ' <span class="status">' + esc(p.status) + "</span>" : "") + "</h3>" +
+  return '<article class="card project-card">' +
+    '<div class="pc-top"><span class="num">' + pad2(index + 1) + "</span>" + statusPill(p.status) + "</div>" +
+    "<h3>" + name + "</h3>" +
     "<p>" + esc(p.description || "") + "</p>" +
-    '<p class="project-meta">' +
-      (p.tags.length ? "<span>" + esc(p.tags.join(", ")) + "</span>" : "") +
-      (links.length ? "<span>" + links.join(" · ") + "</span>" : "") +
-    "</p></li>";
+    tagsHTML(p.tags) +
+    '<div class="pc-foot">' + links +
+      (p.readme ? '<span class="pc-go">' + icon("arrow-right", 18) + "</span>" : "") + "</div>" +
+    "</article>";
 }
 
-var HOME_PROJECTS = 5;
+function sectionHead(title, linkTo, linkText) {
+  return '<div class="sec-head"><h2>' + esc(title) + "</h2>" +
+    (linkTo ? '<a href="#' + linkTo + '">' + esc(linkText) + " " + icon("arrow-right", 15) + "</a>" : "") + "</div>";
+}
+
+var HOME_PROJECTS = 4;
+
+function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
 
 function homePage(cfg) {
-  var html = '<div class="wrap">' +
-    '<section class="intro">' +
-      logoHTML("intro-logo") +
+  var email = cfg.join.email || cfg.site.email;
+
+  var html = '<section class="hero"><div class="wrap hero-in">' +
+    '<div class="hero-text">' +
+      '<p class="eyebrow"><i class="dot live"></i>' +
+        plural(cfg.projects.length, "project") + " · " + plural(cfg.team.length, "person").replace("persons", "people") + "</p>" +
       "<h1>" + esc(cfg.site.tagline || cfg.site.name) + "</h1>" +
-      (cfg.site.description ? "<p>" + esc(cfg.site.description) + "</p>" : "") +
-    "</section>";
+      (cfg.site.description ? '<p class="lead">' + esc(cfg.site.description) + "</p>" : "") +
+      '<div class="actions">' +
+        '<a class="btn btn-solid" href="#/projects">See the projects ' + icon("arrow-right", 16) + "</a>" +
+        '<a class="btn" href="#/join">Join us</a>' +
+      "</div>" +
+    "</div>" +
+    '<div class="hero-art">' + logoHTML("hero-logo") + "</div>" +
+    "</div></section>";
 
   if (cfg.projects.length) {
-    html += "<section><h2>Projects</h2>" +
-      '<ul class="projects">' + cfg.projects.slice(0, HOME_PROJECTS).map(projectItem).join("") + "</ul>" +
-      (cfg.projects.length > HOME_PROJECTS
-        ? '<p><a href="#/projects">All ' + cfg.projects.length + " projects</a></p>"
-        : "") +
-      "</section>";
+    var more = cfg.projects.length > HOME_PROJECTS;
+    html += '<section><div class="wrap">' +
+      sectionHead("Projects", more ? "/projects" : "", "All " + cfg.projects.length) +
+      '<div class="grid two">' + cfg.projects.slice(0, HOME_PROJECTS).map(projectCard).join("") + "</div>" +
+      "</div></section>";
   }
 
   if (cfg.team.length) {
-    html += "<section><h2>Team</h2>" +
-      '<div class="people">' + cfg.team.map(function (m) {
-        return '<a class="person" href="#/team">' + avatarHTML(m, "small") +
-          "<span>" + esc(m.name || m.username || "") + "</span></a>";
-      }).join("") + "</div></section>";
+    html += '<section><div class="wrap">' +
+      sectionHead("Team", "/team", "Meet the team") +
+      '<div class="grid three">' + cfg.team.map(function (m) {
+        return '<a class="card person" href="#/team">' + avatarHTML(m, "mid") +
+          "<span><strong>" + esc(m.name || m.username || "") + "</strong>" +
+          (m.role ? "<small>" + esc(m.role) + "</small>" : "") + "</span></a>";
+      }).join("") + "</div></div></section>";
   }
 
-  var email = cfg.join.email || cfg.site.email;
-  html += "<section><h2>Contact</h2><p>" +
-    (email ? 'Write to <a href="mailto:' + esc(email) + '">' + esc(email) + "</a>. " : "") +
-    'If you want to work with us, see <a href="#/join">how to join</a>.</p>' +
-    (cfg.socials.length ? "<p>" + socialLinks(cfg.socials) + "</p>" : "") +
-    "</section></div>";
+  html += '<section><div class="wrap"><div class="cta">' +
+    "<div><h2>Want to work with us?</h2>" +
+    "<p>Show us something you have made" +
+      (email ? ', or write to <a href="mailto:' + esc(email) + '">' + esc(email) + "</a>" : "") + ".</p></div>" +
+    '<a class="btn btn-invert" href="#/join">How to join ' + icon("arrow-right", 16) + "</a>" +
+    "</div></div></section>";
 
   return html;
 }
@@ -615,56 +682,66 @@ function projectsPage(cfg) {
 
   var filters = "";
   if (statuses.length > 1) {
-    filters = '<p class="filters">' + ["all"].concat(statuses).map(function (f) {
+    filters = '<div class="filters">' + ["all"].concat(statuses).map(function (f) {
       return '<button type="button" data-filter="' + esc(f) + '"' + (state.filter === f ? ' class="on"' : "") + ">" +
         esc(cap(f)) + "</button>";
-    }).join("") + "</p>";
+    }).join("") + "</div>";
   }
 
   var shown = cfg.projects.filter(function (p) {
     return state.filter === "all" || p.status === state.filter;
   });
 
-  return '<div class="wrap"><section><h1>Projects</h1>' + filters +
+  return '<section class="page"><div class="wrap">' +
+    '<div class="page-head"><h1>Projects</h1><p class="lead">Everything we are working on. All of it is open source.</p></div>' +
+    filters +
     (shown.length
-      ? '<ul class="projects">' + shown.map(projectItem).join("") + "</ul>"
+      ? '<div class="grid two">' + shown.map(function (p) { return projectCard(p, cfg.projects.indexOf(p)); }).join("") + "</div>"
       : '<p class="mut">Nothing here yet.</p>') +
-    "</section></div>";
+    "</div></section>";
 }
 
 function teamPage(cfg) {
   var people = cfg.team.map(function (m) {
     var name = m.name || m.username || "";
-    var nick = m.username && m.username !== name ? ' <span class="nick">' + esc(m.username) + "</span>" : "";
-    var links = socialLinks(m.socials);
-    return '<li class="member">' + avatarHTML(m, "large") +
-      "<div><h3>" + esc(name) + nick + "</h3>" +
+    return '<article class="card member">' + avatarHTML(m, "large") +
+      "<h3>" + esc(name) + "</h3>" +
+      (m.username && m.username !== name ? '<p class="nick">@' + esc(m.username) + "</p>" : "") +
       (m.role ? '<p class="role">' + esc(m.role) + "</p>" : "") +
-      (m.bio ? "<p>" + esc(m.bio) + "</p>" : "") +
-      (links ? '<p class="member-links">' + links + "</p>" : "") +
-      "</div></li>";
+      (m.bio ? '<p class="bio">' + esc(m.bio) + "</p>" : "") +
+      '<div class="socials">' + socialButtons(m.socials) + "</div>" +
+      "</article>";
   }).join("");
 
-  return '<div class="wrap"><section><h1>Team</h1>' +
-    (people ? '<ul class="members">' + people + "</ul>" : '<p class="mut">Nobody is listed yet.</p>') +
-    "</section></div>";
+  return '<section class="page"><div class="wrap">' +
+    '<div class="page-head"><h1>Team</h1><p class="lead">The people behind ' + esc(cfg.site.name) + ".</p></div>" +
+    (people ? '<div class="grid three">' + people + "</div>" : '<p class="mut">Nobody is listed yet.</p>') +
+    "</div></section>";
 }
 
 function joinPage(cfg) {
   var email = cfg.join.email || cfg.site.email || "";
   var mailto = "mailto:" + email + (cfg.join.subject ? "?subject=" + encodeURIComponent(cfg.join.subject) : "");
-  var steps = (cfg.join.steps || []).map(function (s) { return "<li>" + esc(s) + "</li>"; }).join("");
+  var steps = (cfg.join.steps || []).map(function (s, i) {
+    return '<li><span class="num">' + pad2(i + 1) + "</span><p>" + esc(s) + "</p></li>";
+  }).join("");
 
-  return '<div class="wrap"><section class="join"><h1>' + esc(cfg.join.title || "Join us") + "</h1>" +
-    (cfg.join.intro ? "<p>" + esc(cfg.join.intro) + "</p>" : "") +
-    (steps ? "<ol>" + steps + "</ol>" : "") +
-    (email
-      ? '<p class="mail-row"><a class="btn btn-solid" href="' + esc(mailto) + '">Email ' + esc(email) + "</a>" +
-        '<button type="button" class="btn" id="copy-email">Copy address</button></p>'
-      : "") +
-    (cfg.join.note ? '<p class="mut">' + esc(cfg.join.note) + "</p>" : "") +
-    (cfg.socials.length ? "<p>You can also find us here: " + socialLinks(cfg.socials) + "</p>" : "") +
-    "</section></div>";
+  return '<section class="page"><div class="wrap">' +
+    '<div class="page-head"><h1>' + esc(cfg.join.title || "Join us") + "</h1>" +
+      (cfg.join.intro ? '<p class="lead">' + esc(cfg.join.intro) + "</p>" : "") + "</div>" +
+    '<div class="join-grid">' +
+      "<div>" + (steps ? '<ol class="steps">' + steps + "</ol>" : "") +
+        (cfg.join.note ? '<p class="note">' + esc(cfg.join.note) + "</p>" : "") + "</div>" +
+      '<aside class="card join-side">' +
+        "<h3>Write to us</h3>" +
+        (email
+          ? '<p class="join-mail">' + esc(email) + "</p>" +
+            '<a class="btn btn-solid wide" href="' + esc(mailto) + '">Open in mail app</a>' +
+            '<button type="button" class="btn wide" id="copy-email">Copy address</button>'
+          : "") +
+        (cfg.socials.length ? '<p class="mut small">Or find us here</p><div class="socials">' + socialButtons(cfg.socials) + "</div>" : "") +
+      "</aside>" +
+    "</div></div></section>";
 }
 
 function projectPage(cfg, slug) {
@@ -672,22 +749,20 @@ function projectPage(cfg, slug) {
   cfg.projects.forEach(function (x) { if (x.slug === slug) p = x; });
   if (!p) return notFoundPage();
 
-  var meta = [];
-  if (p.status) meta.push(esc(cap(p.status)));
-  if (p.tags.length) meta.push(esc(p.tags.join(", ")));
-
   var buttons = "";
-  if (p.site) buttons += '<a class="btn btn-solid" href="' + esc(p.site) + '" target="_blank" rel="noreferrer">Website</a>';
-  if (p.link) buttons += '<a class="btn" href="' + esc(p.link) + '" target="_blank" rel="noreferrer">Source code</a>';
+  if (p.site) buttons += '<a class="btn btn-solid" href="' + esc(p.site) + '" target="_blank" rel="noreferrer">Website ' + icon("arrow-up-right", 15) + "</a>";
+  if (p.link) buttons += '<a class="btn" href="' + esc(p.link) + '" target="_blank" rel="noreferrer">' + icon("github", 16) + " Source code</a>";
 
-  return '<div class="wrap"><section class="project-page">' +
-    '<p class="back"><a href="#/projects">← All projects</a></p>' +
-    "<h1>" + esc(p.name || "") + "</h1>" +
-    '<p class="lead">' + esc(p.description || "") + "</p>" +
-    (meta.length ? '<p class="project-meta"><span>' + meta.join(" · ") + "</span></p>" : "") +
-    (buttons ? '<p class="mail-row">' + buttons + "</p>" : "") +
-    '<article id="readme-body">' + (p.readme ? '<p class="mut">Loading…</p>' : "") + "</article>" +
-    "</section></div>";
+  return '<section class="page"><div class="wrap narrow">' +
+    '<a class="back" href="#/projects">' + icon("arrow-left", 15) + " All projects</a>" +
+    '<div class="page-head">' + statusPill(p.status) +
+      "<h1>" + esc(p.name || "") + "</h1>" +
+      '<p class="lead">' + esc(p.description || "") + "</p>" +
+      tagsHTML(p.tags) +
+      (buttons ? '<div class="actions">' + buttons + "</div>" : "") +
+    "</div>" +
+    '<article class="card prose" id="readme-body">' + (p.readme ? '<p class="mut">Loading…</p>' : "") + "</article>" +
+    "</div></section>";
 }
 
 // the page already has the project name as its heading, so drop the readme's own
@@ -723,17 +798,19 @@ function loadReadme(p) {
 }
 
 function notFoundPage() {
-  return '<div class="wrap"><section><h1>Page not found</h1>' +
-    '<p>There is nothing at this address. <a href="#/">Go to the front page</a>.</p></section></div>';
+  return '<section class="page"><div class="wrap narrow lost">' +
+    '<p class="big">404</p><h1>Page not found</h1>' +
+    '<p class="lead">There is nothing at this address.</p>' +
+    '<div class="actions"><a class="btn btn-solid" href="#/">Go to the front page</a></div></div></section>';
 }
 
 function errorScreen(msg) {
   document.getElementById("site-header").innerHTML = "";
   document.getElementById("site-footer").innerHTML = "";
   document.getElementById("app").innerHTML =
-    '<div class="wrap"><section><h1>The site could not be loaded</h1>' +
-    "<p>Something went wrong while reading the site settings. Try refreshing the page.</p>" +
-    '<p class="mut">' + esc(msg) + "</p></section></div>";
+    '<section class="page"><div class="wrap narrow lost"><h1>The site could not be loaded</h1>' +
+    '<p class="lead">Something went wrong while reading the site settings. Try refreshing the page.</p>' +
+    '<p class="mut small">' + esc(msg) + "</p></div></section>";
 }
 
 /* Accounts: who is signed in, and announcements from the api.

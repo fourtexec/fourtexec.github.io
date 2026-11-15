@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="NewTeller — a Wayland desktop for Linux. Download the newest build for Debian, Ubuntu, Arch Linux or Fedora." />
-    <meta name="theme-color" content="#0e0e0e" />
+    <meta name="theme-color" content="#09090b" />
     <link rel="icon" type="image/png" href="../logo.png" />
     <title>NewTeller downloads · fourtexec</title>
     <script>
@@ -19,29 +19,31 @@
     <link rel="stylesheet" href="../style.css" />
     <style>
       /* this page only, the rest comes from ../style.css */
-      .nt-head { padding: 36px 0 24px; }
-      .nt-head h1 { margin: 10px 0; }
-      .nt-head p { color: var(--mut); max-width: 620px; margin: 0; }
-      .nt-back { font-size: 14px; color: var(--mut); text-decoration: none; }
-      .nt-grid { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 8px 0 32px; }
+      .nt-head { padding: 48px 0 36px; }
+      .nt-head h1 { margin: 22px 0 16px; }
+      .nt-head p { color: var(--mut); font-size: 18px; max-width: 620px; }
+      .nt-back { font-size: 14px; font-weight: 500; color: var(--mut); text-decoration: none; }
+      .nt-back:hover { color: var(--tx); }
+      .nt-grid { display: grid; gap: 16px; grid-template-columns: 1fr; margin: 0 0 48px; }
       @media (min-width: 700px) { .nt-grid { grid-template-columns: 1fr 1fr; } }
-      .nt-build { padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-      .nt-build.yours { border-color: var(--acc); }
-      .nt-build h2 { margin: 0; }
+      .nt-build { padding: 26px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+      .nt-build.yours { border-color: var(--tx); }
+      .nt-build h2 { font-size: 22px; }
       .nt-meta { font-size: 14px; color: var(--mut); display: flex; flex-wrap: wrap; gap: 2px 14px; }
-      .nt-sum { font-family: var(--mono); font-size: 11px; color: var(--mut); overflow-wrap: anywhere; }
+      .nt-sum { font-family: var(--mono); font-size: 11px; color: var(--dim); overflow-wrap: anywhere; }
       .nt-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
-      .nt-h { margin: 32px 0 12px; }
-      .nt-steps { margin: 0; padding: 14px 16px; font-family: var(--mono); font-size: 14px; line-height: 1.6; overflow-x: auto; white-space: pre; }
-      .nt-changes { list-style: none; margin: 0 0 48px; padding: 0; }
-      .nt-changes li { display: flex; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--line); min-width: 0; }
-      .nt-changes .when { font-size: 14px; color: var(--mut); white-space: nowrap; font-variant-numeric: tabular-nums; }
-      .nt-changes .what { min-width: 0; overflow-wrap: anywhere; }
-      .nt-state { color: var(--mut); padding: 20px 0 32px; }
+      .nt-row .btn { height: 42px; }
+      .nt-h { margin: 48px 0 18px; }
+      .nt-steps { margin: 0; padding: 18px 20px; border: 1px solid var(--line); font-family: var(--mono); font-size: 13.5px; line-height: 1.7; overflow-x: auto; white-space: pre; }
+      .nt-changes { list-style: none; margin: 0 0 80px; padding: 0; }
+      .nt-changes li { display: flex; gap: 18px; padding: 12px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+      .nt-changes .when { font-size: 14px; color: var(--dim); white-space: nowrap; font-variant-numeric: tabular-nums; padding-top: 1px; }
+      .nt-changes .what { min-width: 0; overflow-wrap: anywhere; color: var(--mut); }
+      .nt-state { color: var(--mut); padding: 0 0 40px; }
     </style>
   </head>
   <body>
-    <main class="wrap">
+    <main class="wrap narrow">
       <header class="nt-head">
         <a class="nt-back" href="../">&larr; fourtexec.site</a>
         <h1>NewTeller</h1>
