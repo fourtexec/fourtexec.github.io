@@ -20,9 +20,9 @@ curl -fsSL https://raw.githubusercontent.com/fourtexec/nash/main/install.sh | sh
 
 ## Update
 
-nash updates itself from the [release manifest](https://fourtexec.site/nash/manifest.json)
-of this site: it takes the binary tagged with your system and CPU, checks its
-SHA-256 and replaces itself.
+nash updates itself straight from its [GitHub releases](https://github.com/fourtexec/nash/releases):
+it takes the binary named after your system and CPU from the release, checks
+its SHA-256 and replaces itself.
 
 ```sh
 nash update          # the newest stable release
@@ -53,6 +53,8 @@ nash update --list   # what there is for your system
 
 ## Latest changes
 
+- 2026-11-15 — nash update: download straight from GitHub releases ([d00c352](https://github.com/fourtexec/nash/commit/d00c35282b5f25c4512510645fc7912ed616efd3))
+- 2026-11-15 — nash update: download straight from GitHub releases ([2771325](https://github.com/fourtexec/nash/commit/27713256b9471cd80954a8caa49383c53a529b24))
 - 2026-11-15 — Micro-optimize builtin dispatch: match-based is_builtin and fast path in exec_simple ([5b8a60c](https://github.com/fourtexec/nash/commit/5b8a60cf912c378c982600bae93ba3de4ad676fe))
 - 2026-11-15 — Release workflow updates fourtexec.site itself ([97487a5](https://github.com/fourtexec/nash/commit/97487a5827aeab1732e5e6831920df3859c07c22))
 - 2026-11-15 — Optimize command execution: avoid globbing directory reads for lone '' command words ([c8cff3b](https://github.com/fourtexec/nash/commit/c8cff3b058c683e0e9e05cffcb99c93fab38a9c8))
@@ -61,8 +63,6 @@ nash update --list   # what there is for your system
 - 2026-11-15 — Merge main: the manifest updater replaces the GitHub-latest one ([0008d13](https://github.com/fourtexec/nash/commit/0008d13f282b46a945f0b7b481a1d6dd3ef9a12a))
 - 2026-11-15 — Remove stale Rust cache from Android release build ([c8f279f](https://github.com/fourtexec/nash/commit/c8f279fb799327398fdcb1b0b7294e6bf1d0615b))
 - 2026-11-15 — Merge main: keep nash update PATH next to the manifest updater ([b3c3016](https://github.com/fourtexec/nash/commit/b3c3016679dfc1f6a05cd447010c52589c36a8ec))
-- 2026-11-15 — Make nash update download and install the latest GitHub release ([2468178](https://github.com/fourtexec/nash/commit/2468178929b148cff813d8448d1c3cf64654df4a))
-- 2026-11-15 — Restore offline nash update (validate local binary) to avoid release/VERSION 404s ([5102938](https://github.com/fourtexec/nash/commit/510293806e50fe9918dd7ec093b7aef5f3154423))
 
 ## All releases
 
