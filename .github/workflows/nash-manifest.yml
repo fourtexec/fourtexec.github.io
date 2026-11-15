@@ -1,0 +1,61 @@
+name: nash release manifest
+
+# Keeps nash/manifest.json (https://fourtexec.site/nash/manifest.json)
+# listing the releases of fourtexec/nash. `nash update` reads that file,
+# picks the binary tagged with its platform and downloads it from the link.
+#
+# Runs twice an hour, and at once when the release workflow of fourtexec/nash
+# sends a `nash-release` repository_dispatch event.
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  repository_dispatch:
+    types: [nash-release]
+  workflow_dispatch:
+  push:
+    branches: [ghpages]
+    paths:
+      - .github/scripts/nash-manifest.py
+      - .github/scripts/test_nash_manifest.py
+      - .github/workflows/nash-manifest.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nash-manifest
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ghpages
+      - name: Check the generator
+        run: python3 .github/scripts/test_nash_manifest.py
+      - name: Regenerate the manifest
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p nash
+          python3 .github/scripts/nash-manifest.py nash/manifest.json
+      - name: Publish
+        run: |
+          python3 -c 'import json; json.load(open("nash/manifest.json"))'
+          if git diff --quiet -- nash/manifest.json && git ls-files --error-unmatch nash/manifest.json > /dev/null 2>&1; then
+            echo 'Nothing changed.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add nash/manifest.json
+          git commit -m 'nash release manifest'
+          # The NewTeller workflow commits to the same branch.
+          for attempt in 1 2 3; do
+            git push && exit 0
+            git pull --rebase
+          done
+          exit 1
