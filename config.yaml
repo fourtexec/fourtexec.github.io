@@ -22,7 +22,7 @@ socials:
 
 team:
   - username: photon444
-    name: Maxim
+    name: photon444
     role: founder / systems
     avatar: avatars/photon444.webp   # a file in this repo or an https:// url
     bio: hust a guy which found fourtexec
@@ -39,18 +39,14 @@ team:
     socials:
       - platform: github
         url: https://github.com/aguaguagugugugugu
-      - platform: telegram
-        url: https://t.me/tdyfig
-  - username: Danini
-    name: Danini
-    role: Danini
+  - username: danya
+    name: DANYA
+    role: developer
     avatar: avatars/danini.jpg
-    bio: I am Danini
+    bio: ETO DYANYA
     socials:
       - platform: github
         url: https://github.com/DaniilBorovskiy1809
-      - platform: telegram
-        url: https://t.me/DaniilBorovskiy
 
 # name        title of the project
 # description one or two sentences
