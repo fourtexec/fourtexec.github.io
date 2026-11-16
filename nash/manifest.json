@@ -4,7 +4,7 @@
   "source": "https://github.com/fourtexec/nash",
   "latest": {
     "stable": "0.2.0",
-    "dev": "dev33"
+    "dev": "dev34"
   },
   "releases": [
     {
@@ -236,6 +236,64 @@
           "url": "https://github.com/fourtexec/nash/releases/download/v0.1.0/nash-macos-x86_64",
           "sha256": "8022ba211091d28b6184cc54b76e29ce1065eff61dd26aa5b18e43aeb0b47bd4",
           "size": 1331264
+        }
+      ]
+    },
+    {
+      "version": "dev34",
+      "channel": "dev",
+      "date": "2026-11-16T13:49:06Z",
+      "page": "https://github.com/fourtexec/nash/releases/tag/dev34",
+      "binaries": [
+        {
+          "tags": [
+            "android",
+            "arm64"
+          ],
+          "name": "nash-android-aarch64",
+          "url": "https://github.com/fourtexec/nash/releases/download/dev34/nash-android-aarch64",
+          "sha256": "aff70080f4578da44e8b980c3dc4dea3017c35e1d034141fc63f10200fa264ad",
+          "size": 1277848
+        },
+        {
+          "tags": [
+            "linux",
+            "arm64"
+          ],
+          "name": "nash-linux-aarch64",
+          "url": "https://github.com/fourtexec/nash/releases/download/dev34/nash-linux-aarch64",
+          "sha256": "c123cb65c2b2656c8fff0a5017b43592ceedcb1a41a74170225270fc05bdf1a1",
+          "size": 1446096
+        },
+        {
+          "tags": [
+            "linux",
+            "amd64"
+          ],
+          "name": "nash-linux-x86_64",
+          "url": "https://github.com/fourtexec/nash/releases/download/dev34/nash-linux-x86_64",
+          "sha256": "a87008b957130ac76d9c92469588d554ce2ad16bdbb5390c06fcd0ea8cee1e8b",
+          "size": 1643208
+        },
+        {
+          "tags": [
+            "macos",
+            "arm64"
+          ],
+          "name": "nash-macos-aarch64",
+          "url": "https://github.com/fourtexec/nash/releases/download/dev34/nash-macos-aarch64",
+          "sha256": "f8100e3dccffee512e4e3bcc0f484c62dfff3a6bc04c9bc507c22f3b6c6f9191",
+          "size": 1266768
+        },
+        {
+          "tags": [
+            "macos",
+            "amd64"
+          ],
+          "name": "nash-macos-x86_64",
+          "url": "https://github.com/fourtexec/nash/releases/download/dev34/nash-macos-x86_64",
+          "sha256": "65e8487c468f82acb86402b3ddbd443c3a74166540e58dcd6c16a9e828b03c5b",
+          "size": 1380648
         }
       ]
     },
@@ -1338,64 +1396,6 @@
           "url": "https://github.com/fourtexec/nash/releases/download/dev14/nash-macos-x86_64",
           "sha256": "d20469147ba1a6c48ac3a277cf93e4b0094e6285caacbd9dd2d86a7830840099",
           "size": 1360040
-        }
-      ]
-    },
-    {
-      "version": "dev13",
-      "channel": "dev",
-      "date": "2026-11-15T09:40:58Z",
-      "page": "https://github.com/fourtexec/nash/releases/tag/dev13",
-      "binaries": [
-        {
-          "tags": [
-            "android",
-            "arm64"
-          ],
-          "name": "nash-android-aarch64",
-          "url": "https://github.com/fourtexec/nash/releases/download/dev13/nash-android-aarch64",
-          "sha256": "867a007b437639805f97b17b0774b1b69308ab9a444338f077e8d38e639484c8",
-          "size": 1255880
-        },
-        {
-          "tags": [
-            "linux",
-            "arm64"
-          ],
-          "name": "nash-linux-aarch64",
-          "url": "https://github.com/fourtexec/nash/releases/download/dev13/nash-linux-aarch64",
-          "sha256": "80ab33875ed842faa68769287fc8bdb3678b69e7032a26e22b709d9b8166aab0",
-          "size": 1446096
-        },
-        {
-          "tags": [
-            "linux",
-            "amd64"
-          ],
-          "name": "nash-linux-x86_64",
-          "url": "https://github.com/fourtexec/nash/releases/download/dev13/nash-linux-x86_64",
-          "sha256": "9d49d5b0504d2aeab8b7b6b2c6b8e7e583c74f0803b272bdb6371cb4efaeef55",
-          "size": 1622728
-        },
-        {
-          "tags": [
-            "macos",
-            "arm64"
-          ],
-          "name": "nash-macos-aarch64",
-          "url": "https://github.com/fourtexec/nash/releases/download/dev13/nash-macos-aarch64",
-          "sha256": "1e301d8f39605d6e7fba18a38c5f2a489f266ad98d8adb7b67c9ea460a533cf5",
-          "size": 1250128
-        },
-        {
-          "tags": [
-            "macos",
-            "amd64"
-          ],
-          "name": "nash-macos-x86_64",
-          "url": "https://github.com/fourtexec/nash/releases/download/dev13/nash-macos-x86_64",
-          "sha256": "a0f17c379f8411707239d2fdfe8bef1e2a7cda600c6ddb62a5d3df5030455a7a",
-          "size": 1360032
         }
       ]
     }
