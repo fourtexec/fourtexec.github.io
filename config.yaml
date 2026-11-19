@@ -31,6 +31,16 @@ team:
         url: https://github.com/photonest444
       - platform: x
         url: https://x.com/photon444
+  - username: dr-lexus-dr
+    name: Lexus
+    role: Vibecoder
+    avatar: avatars/1.jpg
+    bio: MusorUm founder
+    socials:
+      - platform: github
+        url: https://github.com/dr-lexus-dr
+      - platform: web
+        url: https://musorum.com
   - username: Za kotov
     name: Za kotov
     role: tester / coder
