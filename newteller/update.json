@@ -4,39 +4,44 @@
   "source": "https://github.com/fourtexec/newteller",
   "targets": {
     "arch-x86_64": {
-      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
-      "date": 1793943937,
-      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
-      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-arch-x86_64.zip",
-      "sha256": "9489dd3ce8f09330c83dd92e4cce640e13ea7cc4b75b5260541c81953d414715",
-      "size": 9358421
+      "commit": "4c6df0481760b16eb3307459efacd04fc4d74347",
+      "date": 1795796181,
+      "notes": "Updater, graphics tablets, emoji picker, settings that do what they say",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-4c6df0481760b16eb3307459efacd04fc4d74347/newteller-commit-4c6df0481760b16eb3307459efacd04fc4d74347-arch-x86_64.zip",
+      "sha256": "5bd75a1ce798ccaa9a5461c217648ef43f3076056ca091723ea82efdf488743a",
+      "size": 9406982
     },
     "debian13-x86_64": {
-      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
-      "date": 1793943937,
-      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
-      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-debian13-x86_64.zip",
-      "sha256": "cde6eacb5e672dafe5da0b3cf842cd7885e7ffba0504f431690a1c981a7f4593",
-      "size": 9384700
+      "commit": "4c6df0481760b16eb3307459efacd04fc4d74347",
+      "date": 1795796181,
+      "notes": "Updater, graphics tablets, emoji picker, settings that do what they say",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-4c6df0481760b16eb3307459efacd04fc4d74347/newteller-commit-4c6df0481760b16eb3307459efacd04fc4d74347-debian13-x86_64.zip",
+      "sha256": "a7395d77936f1325f4f9c408ca2f955962e036cad7cf2b1397565c53011f8ce4",
+      "size": 9447959
     },
     "fedora45-x86_64": {
-      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
-      "date": 1793943937,
-      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
-      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-fedora45-x86_64.zip",
-      "sha256": "0cffbee7f16c9485b54f3ffa66089f733b1ef7748474a29e20d4facaf2c42f41",
-      "size": 9356661
+      "commit": "4c6df0481760b16eb3307459efacd04fc4d74347",
+      "date": 1795796181,
+      "notes": "Updater, graphics tablets, emoji picker, settings that do what they say",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-4c6df0481760b16eb3307459efacd04fc4d74347/newteller-commit-4c6df0481760b16eb3307459efacd04fc4d74347-fedora45-x86_64.zip",
+      "sha256": "513e7c525152b56b3b7ae6e4c2a0a5498f0bf644fe035cce901c70b5a2f89a1d",
+      "size": 9417962
     },
     "ubuntu26.04-x86_64": {
-      "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
-      "date": 1793943937,
-      "notes": "Window menu, always on top, screen recording, sound card, hot corners, notification reply, Flatpak protocols, dock/tray fixes",
-      "url": "https://github.com/fourtexec/newteller/releases/download/commit-b7d878adefac6d3de80462efd2363c2b801c36c8/newteller-commit-b7d878adefac6d3de80462efd2363c2b801c36c8-ubuntu26.04-x86_64.zip",
-      "sha256": "9db70fa594807b909005f8e85bf182ef8b884eaf0de7a68953f9498503156aee",
-      "size": 9472085
+      "commit": "4c6df0481760b16eb3307459efacd04fc4d74347",
+      "date": 1795796181,
+      "notes": "Updater, graphics tablets, emoji picker, settings that do what they say",
+      "url": "https://github.com/fourtexec/newteller/releases/download/commit-4c6df0481760b16eb3307459efacd04fc4d74347/newteller-commit-4c6df0481760b16eb3307459efacd04fc4d74347-ubuntu26.04-x86_64.zip",
+      "sha256": "8c0d99b7e3fa0ea2417af75a019c102cb443497cc6c18c6598bcade58b33af89",
+      "size": 9537724
     }
   },
   "changes": [
+    {
+      "commit": "4c6df0481760b16eb3307459efacd04fc4d74347",
+      "date": 1795796181,
+      "title": "Updater, graphics tablets, emoji picker, settings that do what they say"
+    },
     {
       "commit": "b7d878adefac6d3de80462efd2363c2b801c36c8",
       "date": 1793943937,
@@ -181,11 +186,6 @@
       "commit": "45c4998b9eb3f0841fc3c4213fe4ab719df134fd",
       "date": 1792383318,
       "title": "fix: clock popup failed to parse on Qt 6.8 (reserved word 'long')"
-    },
-    {
-      "commit": "78a0631fcf3881b8102963d4f258f1617884888c",
-      "date": 1792351379,
-      "title": "fix: notification daemon compiles with QtDBus"
     }
   ]
 }
